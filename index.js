@@ -6,6 +6,8 @@ const { exec } = require('child_process');
 const port = +process.argv[2];
 const server = new Net.Server();
 
+const config = require("./config/strings.js");
+
 const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
@@ -28,7 +30,19 @@ server.on('connection', function(socket) {
         //Cleaning data
         let cleanSTR = chunk.toString().replace(/(\r\n|\n|\r)/gm,"");
 
-
+        if(cleanSTR.includes(" ") == true) {
+            let split = cleanSTR.split(" ")
+            let count = 0;
+            split.forEach(e => {
+                config.CurrentMSG.arg[count] = e;
+                count++;
+            })
+            config.CurrentCMD.Cmd = split[0];
+            config.CurrentCMD.full = cleanSTR;
+        } else {
+            config.CurrentCMD.Cmd = cleanSTR;
+            config.CurrentCMD.full = cleanSTR;
+        }
 
         if(cleanSTR.startsWith("test")) {
             socket.write("working");
