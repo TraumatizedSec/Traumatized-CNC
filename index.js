@@ -26,7 +26,9 @@ server.on('connection', function(socket) {
     // READING DATA
     socket.on('data', function(chunk) {
         //Cleaning data
-        var cleanSTR = chunk.toString().replace(/(\r\n|\n|\r)/gm,"");
+        let cleanSTR = chunk.toString().replace(/(\r\n|\n|\r)/gm,"");
+
+
 
         if(cleanSTR.startsWith("test")) {
             socket.write("working");
