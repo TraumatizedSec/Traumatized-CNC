@@ -4,7 +4,7 @@ exports.CNC_Info = {
     "Name": "Traumatized",
     "Description": "The Land Of Packets",
     "Version": "3.00",
-    "Discord_server": "https://scrapy.tech/discord"
+    "Discord_server": "scrapy.tech/discord"
 }
 
 exports.CurrentCMD = {
