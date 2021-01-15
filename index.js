@@ -3,7 +3,7 @@ var fs = require('fs');
 const p = require("phin");
 const f = require("node-fetch");
 const { exec } = require('child_process');
-const port = +process.argv[2];
+const port = 455;
 const server = new Net.Server();
 
 const config = require("./config/strings.js");
@@ -38,10 +38,10 @@ server.on('connection', function(socket) {
                 count++;
             })
             config.CurrentCMD.Cmd = split[0];
-            config.CurrentCMD.full = cleanSTR;
+            config.CurrentCMD.fullcmd = cleanSTR;
         } else {
             config.CurrentCMD.Cmd = cleanSTR;
-            config.CurrentCMD.full = cleanSTR;
+            config.CurrentCMD.fullcmd = cleanSTR;
         }
 
         if(cleanSTR.startsWith("test")) {
