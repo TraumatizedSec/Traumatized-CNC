@@ -45,7 +45,7 @@ server.on('connection', function(socket) {
         }
 
         if(cleanSTR.startsWith("test")) {
-            socket.write("working");
+            
         }
     });
 
