@@ -1,5 +1,17 @@
 const fs = require("fs");
 
+exports.Colors = {
+    "Red": "",
+    "Yellow": "",
+    "Blue": "",
+    "Purple": "",
+    "Green": "",
+    "Cyan": "",
+    "Black": "",
+    "Reset": "",
+    "Clear": ""
+}
+
 exports.CNC_Info = {
     "Name": "Traumatized",
     "Description": "The Land Of Packets",
