@@ -7,6 +7,7 @@ const port = 455;
 const server = new Net.Server();
 
 const config = require("./config/strings.js");
+const crud = require("./auth/crud.js");
 
 const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
@@ -44,8 +45,12 @@ server.on('connection', function(socket) {
             config.CurrentCMD.fullcmd = cleanSTR;
         }
 
-        if(cleanSTR.startsWith("test")) {
+        if(cleanSTR) {
             
+        } else if(crud.isSignedIn(socket_ip) == true) {
+
+        } else {
+            socket.write("Must login")
         }
     });
 
