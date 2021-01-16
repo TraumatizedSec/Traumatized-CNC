@@ -1,7 +1,8 @@
 const fs = require("fs");
-const { type } = require("os");
+const crud = require("./crud.js");
 
-const file_path = "./db/users.db";
+const db_path = "./db/users.db";
+const current_path = "./db/current.db";
 
 exports.user = function(usrOrip, stat) {
     /*
@@ -24,10 +25,10 @@ exports.user = function(usrOrip, stat) {
     let db_maxtime = "";
     let db_admin = "";
   
-    let db = fs.readFileSync(file_path, "utf8");
+    let db = fs.readFileSync(db_path, "utf8");
     let fix1 = db.split("('").join("");
     let fix2 = fix1.split("')").join("");
-    let users = db.split("\n");
+    let users = fix2.split("\n");
     users.forEach(e => { 
         if(e.includes(usrOrip)) {
             let info = e.split("','");
@@ -60,5 +61,36 @@ exports.user = function(usrOrip, stat) {
             case stat_types[6]:
                 return db_user + "," + db_ip + "," + db_pw + "," + db_level + "," + db_maxtime + "," + db_admin;
         }
+    }
+}
+
+exports.update = function() {
+    
+}
+
+exports.log_session = function(ip) {
+    let username = crud.user(ip, "username");
+    fs.appendFileSync(current_path, "('" + username + "','" + ip + "')\n");
+}
+
+exports.isSignedIn = function(usrOrip) {
+    /*
+    Read current db
+    */
+
+    let found_check = false;
+
+    let db = fs.readFileSync("./db/current.db", "utf8");
+    let users = db.split("\n");
+    users.forEach(u => {
+        if(u.includes(usrOrip)) {
+            found_check = true;
+        }
+    })
+
+    if(found_check === false) {
+        return false;
+    } else {
+        return true;
     }
 }
