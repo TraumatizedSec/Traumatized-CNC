@@ -1,5 +1,7 @@
 const fs = require("fs");
 
+exports.hostname = "[Traumatized@CNC]#~ ";
+
 exports.Colors = {
     "Red": "",
     "Yellow": "",
