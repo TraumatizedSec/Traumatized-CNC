@@ -45,7 +45,7 @@ exports.user = function(usrOrip, stat) {
     if(found_check === false) {
         return "No user found!";
     } else {
-        switch(type) {
+        switch(stat) {
             case stat_types[0]:
                 return db_user;
             case stat_types[1]:
@@ -64,13 +64,78 @@ exports.user = function(usrOrip, stat) {
     }
 }
 
-exports.update = function() {
-    
+exports.remove = function(usrOrip) {
+    let db = fs.readFileSync(db_path, "utf8");
+    let users = db.split("\n");
+    let new_db = "";
+    users.forEach(u => {
+        if(!u.includes(usrOrip) && u.length > 5) {
+            found_check = true
+            new_db += u + "\n";
+        }
+    })
+    fs.writeFileSync(db_path, new_db);
+    return "Removed";
 }
 
-exports.log_session = function(ip) {
-    let username = crud.user(ip, "username");
+exports.add = function(user, ip, pw, level, maxtime, admin) {
+    let get_user = crud.user(user, "all");
+    if(get_user === "Error, Invalid stat type!" || get_user === "No user found!") {
+        return "Username is taken, Choose another username";
+    } else {
+        fs.appendFileSync(db_path, "('" + user + "','" + ip + "','" + pw + "','" + level + "','" + maxtime + "','" + admin + "')\n")
+        return "User added";
+    }
+}
+
+exports.update = function(usrOrip, new_ip, new_level, new_maxtime, new_admin) {
+    /*
+    Read database and grab user data
+    */
+
+    let db = fs.readFileSync(db_path, "utf8");
+    let users = db.split("\n");
+    let new_db = "";
+
+    let db_user = "";
+    let db_ip = "";
+    let db_pw = "";
+    let db_level = "";
+    let db_maxtime = "";
+    let db_admin = "";
+
+    users.forEach(u => {
+        if(u.includes(usrOrip)) {
+            let fix = u.replace("('", "");
+            let fix_again = fix.replace("')", "");
+            let data = fix_again.split("','");
+            db_user = data[0];
+            db_ip = new_ip;
+            db_pw = data[2];
+            db_level = new_level;
+            db_maxtime = new_maxtime;
+            db_admin = new_admin;
+            new_db = "('" + db_user + "','" + db_ip + "','" + db_pw + "','" + db_level + "','" + db_maxtime + "','" + db_admin + "')\n";
+        } else if(u.length > 5) {
+            new_db = u + "\n";
+        }
+    })
+
+    fs.writeFileSync(db_path, new_db);
+    return "User updated!";
+}
+
+exports.log_session = function(username, ip) {
     fs.appendFileSync(current_path, "('" + username + "','" + ip + "')\n");
+}
+
+exports.remove_session = function(ip) {
+    /*
+    Read current db
+    */
+
+    let db = fs.readFileSync(current_path, "utf8");
+
 }
 
 exports.isSignedIn = function(usrOrip) {
@@ -92,5 +157,14 @@ exports.isSignedIn = function(usrOrip) {
         return false;
     } else {
         return true;
+    }
+}
+
+exports.isAdmin = function(usrOip) {
+    let get_usr = crud.user(usrOip, "admin")
+    if(get_usr == true) {
+        return true
+    } else {
+        return false
     }
 }
