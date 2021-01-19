@@ -11,7 +11,7 @@ exports.Colors = {
     "Cyan": "",
     "Black": "",
     "Reset": "",
-    "Clear": ""
+    "Clear": "\033\143"
 }
 
 exports.CNC_Info = {
