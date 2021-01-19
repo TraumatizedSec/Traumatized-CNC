@@ -136,6 +136,8 @@ exports.remove_session = function(ip) {
 
     let db = fs.readFileSync(current_path, "utf8");
 
+    //FUNCTION NOT DONE
+
 }
 
 exports.isSignedIn = function(usrOrip) {
