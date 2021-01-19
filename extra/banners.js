@@ -1,13 +1,17 @@
 const fs = require("fs");
 const config = require("../config/strings.js");
+const link = require("terminal-link");
 
 exports.main = function() {
     let main = "";
-    main += config.Colors.Purple + "                  ╔════════════════════════════════════════╗\r\n";
-    main += "                  ║    " + config.Colors.Yellow + "╔╦╗╦═╗╔═╗╦ ╦╔╦╗╔═╗╔╦╗╦╔═╗╔═╗╔╦╗" + config.Colors.Purple + "     ║\r\n";
-    main += "                  ║     " + config.Colors.Yellow + "║ ╠╦╝╠═╣║ ║║║║╠═╣ ║ ║╔═╝║╣  ║║" + config.Colors.Purple + "     ║\r\n";
-    main += "                  ║     " + config.Colors.Yellow + "╩ ╩╚═╩ ╩╚═╝╩ ╩╩ ╩ ╩ ╩╚═╝╚═╝═╩╝" + config.Colors.Purple + "     ║\r\n";
-    main += "                  ╚════════════════════════════════════════╝\r\n" + config.Colors.Reset;
+    main += config.Colors.Purple + "                    ╔════════════════════════════════════════╗\r\n";
+    main += "                    ║    " + config.Colors.Yellow + "╔╦╗╦═╗╔═╗╦ ╦╔╦╗╔═╗╔╦╗╦╔═╗╔═╗╔╦╗" + config.Colors.Purple + "     ║\r\n";
+    main += "                    ║     " + config.Colors.Yellow + "║ ╠╦╝╠═╣║ ║║║║╠═╣ ║ ║╔═╝║╣  ║║" + config.Colors.Purple + "     ║\r\n";
+    main += "                    ║     " + config.Colors.Yellow + "╩ ╩╚═╩ ╩╚═╝╩ ╩╩ ╩ ╩ ╩╚═╝╚═╝═╩╝" + config.Colors.Purple + "     ║\r\n";
+    main += "                    ╠══╦══════════════════════════════════╦══╣\r\n";
+    main += "        ╔═══════════╝  ╚══════════╗            ╔══════════╝  ╚═══════════╗";
+    main += "        ║ " + config.Colors.Yellow + "Traumatized.xyz/discord" + config.Colors.Purple + " ║            ║  " + config.Colors.Yellow + "Traumatized.xyz/Insta" + config.Colors.Purple + "  ║";
+    main += "        ╚═════════════════════════╝            ╚═════════════════════════╝ " + config.Colors.Reset;
     return main;
 }
 
