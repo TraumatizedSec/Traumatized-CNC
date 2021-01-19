@@ -4,6 +4,8 @@ const crud = require("./crud.js");
 const db_path = "./db/users.db";
 const current_path = "./db/current.db";
 
+exports.current_path = current_path;
+
 exports.user = function(usrOrip, stat) {
     /*
     Stat type validation
@@ -135,9 +137,15 @@ exports.remove_session = function(ip) {
     */
 
     let db = fs.readFileSync(current_path, "utf8");
+    let current_users = db.split("\n");
+    let new_db = "";
+    current_users.forEach(u => {
+        if(!u.includes(ip) && u.length > 5) {
+            new_db = u + "\n";
+        }
+    })
 
-    //FUNCTION NOT DONE
-
+    fs.writeFileSync(current_path, new_db);
 }
 
 exports.isSignedIn = function(usrOrip) {
