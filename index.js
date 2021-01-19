@@ -1,7 +1,6 @@
 const Net = require('net');
 var fs = require('fs');
 ///const async = require('')
-const Discord = require('discord.js')
 const p = require("phin");
 const f = require("node-fetch");
 const { exec } = require('child_process');
