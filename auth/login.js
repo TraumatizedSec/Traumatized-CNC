@@ -9,8 +9,12 @@ exports.login = function(usr, pw, ip) {
         if(crud.isSignedIn(usr) == false) {
             if(get_user.startsWith(usr + ",")) {
                 if(get_user.includes("," + pw)) {
-                    crud.log_session(usr, ip);
-                    return "Successfully logged in! Welcome: " + usr;
+                    if(crud.isSignedIn(ip) == true || crud.isSignedIn(usr) == true) {
+                        return "Error, One connection per user!";
+                    } else {
+                        crud.log_session(usr, ip);
+                        return "Successfully logged in! Welcome: " + usr;
+                    }
                 } else {
                     return "Username or password seems to be incorrect!";
                 }
