@@ -169,6 +169,29 @@ exports.isSignedIn = function(usrOrip) {
     } else {
         return true;
     }
+} 
+
+exports.GetCurrentUsername = function() {
+    /*
+    Read current db
+    */
+
+   let found_check = "";
+
+   let db = fs.readFileSync("./db/current.db", "utf8");
+   let users = db.split("\n");
+   users.forEach(u => {
+       if(u.includes(usrOrip)) {
+           
+           found_check = true;
+       }
+   })
+
+   if(found_check === false) {
+       return false;
+   } else {
+       return true;
+   }
 }
 
 exports.isAdmin = function(usrOip) {
