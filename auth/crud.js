@@ -10,6 +10,7 @@ exports.user = function(usrOrip, stat) {
     /*
     Stat type validation
     */
+   
     let stat_types = ["username", "ip", "password", "level", "maxtime", "admin", "all"];
     if(!stat_types.includes(stat)) {
         return "Error, Invalid stat type!";
