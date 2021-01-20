@@ -24,28 +24,28 @@ exports.geoBanner = function() {
     return gbnnr;
 }
 
-exports.Help = function() {
-    link.cyan( '                    ╔════════════════════════╗\r\n' ) ;
-    link.cyan( '                    ║      ╦ ╦╔═╗╦  ╔═╗      ║\r\n' ) ;
-    link.cyan( '                    ║      ╠═╣║╣ ║  ╠═╝      ║\r\n' ) ;
-    link.cyan( '                    ║      ╩ ╩╚═╝╩═╝╩        ║\r\n' ) ;
-    link.cyan( '                    ╚════════════════════════╝\r\n' ) ;
-
-    var items = [
-        'a. Methods',
-    	'b. GeoIP' ,
-	    'c. Port Scan' ,
-    	'd. Stress',
-        'e. Stats',
-        'f. Admin Help'
-
-    ] ;
-
-    link.singleColumnMenu( items , function( error , response ) {
-        if(response.selectedIndex == 1) {
-            func.Input("IP: ");
-        } else {
-            console.log("dick2big");
-        }
-    });
+exports.methods_list = function() {
+    let list = "";
+    list += config.Colors.Purple + "                    ╔════════════════════════════════════════╗\r\n";
+    list += "                    ║                 " + config.Colors.Yellow + "Methods                ║\r\n";
+    list += "                    ╠═════════╦════════════════════╦═════════╣\r\n";
+    list += "                    ║  " + config.Colors.Yellow + "API 1" + config.Colors.Purple + "  ║                    ║  " + config.Colors.Yellow + "API 2  ║\r\n";
+    list += "                    ╠═════════╩══════╗      ╔══════╩═════════╣\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "UDP          ║      ║ → " + config.Colors.Yellow + "NTP" + config.Colors.Purple + "          ║\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "TCP          ║      ║ → " + config.Colors.Yellow + "OVH-RAW" + config.Colors.Purple + "      ║\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "UDPBLEND     ║      ║ → " + config.Colors.Yellow + "REDSYN" + config.Colors.Purple + "       ║\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "LDAP         ║      ║ → " + config.Colors.Yellow + "HYDRA.KO" + config.Colors.Purple + "     ║\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "NTP          ║      ║ → " + config.Colors.Yellow + "PLUTO-L7" + config.Colors.Purple + "     ║\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "Chargen      ║      ║ → " + config.Colors.Yellow + "FN-RAPE" + config.Colors.Purple + "      ║\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "ACK          ║      ║ → " + config.Colors.Yellow + "R6-FUCK" + config.Colors.Purple + "      ║\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "SSYN         ║      ║ → " + config.Colors.Yellow + "ARK-V2" + config.Colors.Purple + "       ║\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "ESSYN        ║      ║ → " + config.Colors.Yellow + "OVH-RAWV2" + config.Colors.Purple + "    ║\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "XSYN         ║      ║ → " + config.Colors.Yellow + "LDAP" + config.Colors.Purple + "         ║\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "VSE          ║      ║ → " + config.Colors.Yellow + "OVH-DEATH" + config.Colors.Purple + "    ║\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "FRAG         ║      ║ → " + config.Colors.Yellow + "DVR" + config.Colors.Purple + "          ║\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "XMAS         ║      ║ → " + config.Colors.Yellow + "NFO-RIOT" + config.Colors.Purple + "     ║\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "ZAP          ║      ║ → " + config.Colors.Yellow + "CODEINE-HOME" + config.Colors.Purple + " ║\r\n";
+    list += "                    ║ → " + config.Colors.Yellow + "Wizard       ║      ║ → " + config.Colors.Yellow + "N/A" + config.Colors.Purple + "          ║\r\n";
+    list += "                    ╚════════════════╝      ╚════════════════╝\r\n";
+    return list;
 }
