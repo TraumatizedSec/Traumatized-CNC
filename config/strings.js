@@ -20,6 +20,7 @@ exports.Colors = {
     "Grey": "\x1b[90m",
     "Reset": "\x1b[39m",
     "Background_Red": "\x1b[41m",
+    "Background_Green": "\x1b[42m",
     "Background_Grey": "\x1b[100m",
     "Background_Reset": "\x1b[49m",
     "Clear": "\033[2J\033[1;1H"
@@ -55,7 +56,7 @@ exports.GetCurrentUser = function(ip) {
     config.CurrentUser.password = info[2];
     config.CurrentUser.Level = info[3];
     config.CurrentUser.Maxtime = info[4];
-    switch(parseIntinfo[5]) {
+    switch(parseInt(info[5])) {
         case 0:
             config.CurrentUser.isAdmin = false;
             break;
