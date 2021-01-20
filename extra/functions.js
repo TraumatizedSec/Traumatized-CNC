@@ -17,3 +17,12 @@ exports.Input = function(str) {
         }
     ) ;
 }
+
+exports.removeSTR = function(str, array_of_str_to_remove) {
+    let new_str = "";
+    array_of_str_to_remove.forEach(rmSTR => {
+        if(str.includes(rmSTR)) {
+            new_str = str.split(rmSTR).join('');
+        }
+    })
+}
