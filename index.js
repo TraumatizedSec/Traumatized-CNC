@@ -58,18 +58,12 @@ server.on('connection', function(socket) {
         /*
         Main Functions
         */
-        config.GetCurrentUser(socket_ip);
+        let user_name = crud.user(socket_ip, "username");
         if(crud.isSignedIn(socket_ip) == true) {
             if(cleanSTR.startsWith("help")) {
                 banners.Help();
             } else if(cleanSTR.startsWith("methods")) {
-                f('https://scrapy.tech/methods.txt').then(res => res.text()).then(body => {
-                    if(body) {
-                        console.write(body + "\r\n" + config.hostname(config.CurrentUser.Username));
-                    } else {
-                        console.write("Error, Cound't pull current methods LIVE!" + config.hostname(config.CurrentUser.Username));
-                    }
-                });
+                socket.write(banners.methods_list() + config.hostname(""));
             } else if(cleanSTR.startsWith("geo")) {
                 let ip = config.CurrentCMD.arg[1];
                 f('https://scrapy.tech/tools/?action=geoip&q='+ip).then(res => res.text()).then(body => {
