@@ -55,15 +55,9 @@ exports.GetCurrentUser = function(ip) {
     config.CurrentUser.password = info[2];
     config.CurrentUser.Level = info[3];
     config.CurrentUser.Maxtime = info[4];
-    switch(info[5]) {
-        case "0":
-            config.CurrentUser.isAdmin = false;
-            break;
+    switch(parseIntinfo[5]) {
         case 0:
             config.CurrentUser.isAdmin = false;
-            break;
-        case "1":
-            config.CurrentUser.isAdmin = true;
             break;
         case 1:
             config.CurrentUser.isAdmin = true;
