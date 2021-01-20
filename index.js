@@ -60,8 +60,8 @@ server.on('connection', function(socket) {
         */
         config.GetCurrentUser(socket_ip);
         if(crud.isSignedIn(socket_ip) == true) {
-            if(cleanSTR.startsWith("testing")) {
-                socket.write("Testing\r\n" + config.hostname());
+            if(cleanSTR.startsWith("help")) {
+                banners.Help();
             } else if(cleanSTR.startsWith("methods")) {
                 f('https://scrapy.tech/methods.txt').then(res => res.text()).then(body => {
                     if(body) {
