@@ -61,12 +61,12 @@ server.on('connection', function(socket) {
         let user_name = crud.user(socket_ip, "username");
         if(crud.isSignedIn(socket_ip) == true) {
             if(cleanSTR.startsWith("help")) {
-                banners.Help();
+                socket.write("Coming soon.....");
             } else if(cleanSTR.startsWith("methods")) {
-                socket.write(banners.methods_list() + config.hostname(""));
+                socket.write(config.Colors.Clear + banners.methods_list() + config.hostname(config.CurrentUser.Username));
             } else if(cleanSTR.startsWith("geo")) {
                 let ip = config.CurrentCMD.arg[1];
-                f('https://scrapy.tech/tools/?action=geoip&q='+ip).then(res => res.text()).then(body => {
+                f('https://scrapy.tech/tools/?action=geoip&q=' + ip).then(res => res.text()).then(body => {
                     if(body) {
                         socket.write(banners.geoBanner() + body + "\r\n"+ config.hostname(config.CurrentUser.Username));
                     } else {
@@ -86,7 +86,7 @@ server.on('connection', function(socket) {
                     }
                 })
             } else if(cleanSTR.startsWith("clear")) {
-                socket.write(config.Colors.Clear + config.hostname(config.CurrentUser.Username))
+                socket.write(config.Colors.Clear + banners.main() + config.hostname(config.CurrentUser.Username))
             } else if(cleanSTR.startsWith("stress")) {
                 let ip = config.CurrentCMD.arg[1]
                 let port = config.CurrentCMD.arg[2]
