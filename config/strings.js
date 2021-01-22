@@ -1,6 +1,7 @@
 const fs = require("fs");
 const crud = require("../auth/crud.js");
 const config = require("../config/strings.js");
+const f = require("node-fetch");
 
 exports.hostname = function(name) {
     if(!name) {
@@ -64,3 +65,12 @@ exports.GetCurrentUser = function(ip) {
             config.CurrentUser.isAdmin = true;
     }
 }
+
+
+exports.autism = async function() {
+    let r = await(await f("https://google.com")).text();
+    console.log(r);
+    return r;
+  }
+  
+  
