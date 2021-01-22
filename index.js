@@ -32,7 +32,7 @@ server.on('connection', function(socket) {
     console.log('Client IP: ' + socket_ip + ":" + socket_port + "\r\n");
 
     // READING DATA
-    socket.on('data', function(chunk) {
+    socket.on('data', async function(chunk) {
         //Cleaning data
         let cleanSTR = chunk.toString().replace(/(\r\n|\n|\r)/gm,"");
 
@@ -87,6 +87,8 @@ server.on('connection', function(socket) {
                 })
             } else if(cleanSTR.startsWith("clear")) {
                 socket.write(config.Colors.Clear + banners.main() + config.hostname(config.CurrentUser.Username))
+            } else if(cleanSTR.startsWith("skid")) {
+                socket.write(await config.autism());
             } else if(cleanSTR.startsWith("stress")) {
                 let ip = config.CurrentCMD.arg[1]
                 let port = config.CurrentCMD.arg[2]
