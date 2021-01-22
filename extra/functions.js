@@ -26,3 +26,10 @@ exports.removeSTR = function(str, array_of_str_to_remove) {
         }
     })
 }
+
+exports.autism = async function() {
+  let r = await(await fetch("https://google.com")).text();
+
+  return r;
+}
+
