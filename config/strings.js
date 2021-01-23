@@ -66,11 +66,6 @@ exports.GetCurrentUser = function(ip) {
     }
 }
 
-
-exports.autism = async function() {
-    let r = await(await f("https://google.com")).text();
-    console.log(r);
-    return r;
-  }
   
-  
+exports.BOOTERAPI = "";
+exports.BOOTERAPI2 = "";
