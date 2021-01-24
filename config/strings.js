@@ -4,7 +4,7 @@ const config = require("../config/strings.js");
 const f = require("node-fetch");
 
 exports.hostname = function(name) {
-    if(!name) {
+    if(name === null || name === "undefined") {
         name = "CNC";
     }
     return "\x1b[95m[\x1b[33mTraumatized\x1b[95m@\x1b[33m" + name + "\x1b[95m]\x1b[33m#~ \x1b[95m";
@@ -50,22 +50,76 @@ exports.CurrentUser = {
 }
 
 exports.GetCurrentUser = function(ip) {
-    let get_user = crud.user(ip, "all");
-    let info = get_user.split(",");
-    config.CurrentUser.username = info[0];
-    config.CurrentUser.IP = info[1];
-    config.CurrentUser.password = info[2];
-    config.CurrentUser.Level = info[3];
-    config.CurrentUser.Maxtime = info[4];
-    switch(parseInt(info[5])) {
-        case 0:
-            config.CurrentUser.isAdmin = false;
-            break;
-        case 1:
-            config.CurrentUser.isAdmin = true;
+    if(crud.isSignedIn(ip)) {
+        let get_user = crud.user(ip, "all");
+        let info = get_user.split(",");
+        config.CurrentUser.username = info[0];
+        config.CurrentUser.IP = info[1];
+        config.CurrentUser.password = info[2];
+        config.CurrentUser.Level = info[3];
+        config.CurrentUser.Maxtime = info[4];
+        switch(parseInt(info[5])) {
+            case 0:
+                config.CurrentUser.isAdmin = false;
+                break;
+            case 1:
+                config.CurrentUser.isAdmin = true;
+        }
+    } else {
+        console.log("User is not signed in to pull stats!");
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-exports.BOOTERAPI = "";
-exports.BOOTERAPI2 = "";
+exports.BOOTERAPI = "http://50.115.166.121/api.php?key=skidfag3&host=";
+exports.BOOTERAPI2 = "https://plutoniumstress.com/api/api.php?key=PPbhmeRLxeaX9ztz&host=&vip=0&host=";
