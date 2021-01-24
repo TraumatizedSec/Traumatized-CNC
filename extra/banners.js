@@ -49,3 +49,7 @@ exports.methods_list = function() {
     list += "                    ╚════════════════╝      ╚════════════════╝\r\n";
     return list;
 }
+
+exports.help = function() {
+
+}
