@@ -6,9 +6,11 @@ exports.login = function(usr, pw, ip) {
     if(get_user === "No user found!") {
         return "User not found!";
     } else {
-        if(crud.isSignedIn(usr) == false) {
-            if(get_user.startsWith(usr + ",")) {
-                if(get_user.includes("," + pw)) {
+        if(crud.isSignedIn(usr) === false) {
+            let db_username = get_user.split(",")[0];
+            let db_pw = get_user.split(",")[1];
+            if(db_username === usr) {
+                if(db_pw === pw) {
                     if(crud.isSignedIn(ip) == true || crud.isSignedIn(usr) == true) {
                         return "Error, One connection per user!";
                     } else {
