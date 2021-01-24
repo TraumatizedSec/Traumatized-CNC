@@ -171,26 +171,28 @@ exports.isSignedIn = function(usrOrip) {
     }
 } 
 
-exports.GetCurrentUsername = function() {
+exports.GetCurrentUsername = function(usrOrip) {
     /*
     Read current db
     */
 
    let found_check = "";
+   let nigger = "";
+
 
    let db = fs.readFileSync("./db/current.db", "utf8");
    let users = db.split("\n");
    users.forEach(u => {
        if(u.includes(usrOrip)) {
-           
+           nigger = u.split(",")[0].replace("('", "");
            found_check = true;
        }
    })
 
    if(found_check === false) {
-       return false;
+       return "User is currently not signed in";
    } else {
-       return true;
+       return nigger.replace("'", "");
    }
 }
 
