@@ -1,5 +1,6 @@
 const fs = require("fs");
 const gay = require("./data_grid.js");
+const config = require("../config/strings.js");
 
 exports.name_box = "  Name       ";
 exports.name_length = gay.name_box.length;
@@ -18,9 +19,9 @@ exports.admin_length = gay.level_box.length;
 
 exports.CreateHeader = function() {
     let final_table = "";
-    final_table += "      ╔═════════════╦═════════════════╦══════════╦═══════════╦══════════╗\r\n";
-    final_table += "      ║  Name       ║  IP             ║  Level   ║  Maxtime  ║  Admin   ║\r\n";
-    final_table += "      ╠═════════════╬═════════════════╬══════════╬═══════════╬══════════╣\r\n";
+    final_table += config.Colors.Purple + "      ╔═════════════╦═════════════════╦══════════╦═══════════╦═══════════╗\r\n";
+    final_table += "      ║  Name       ║  IP             ║  Level   ║  Maxtime  ║  Admin    ║\r\n";
+    final_table += "      ╠═════════════╬═════════════════╬══════════╬═══════════╬═══════════╣\r\n";
     return final_table;
 }
 
@@ -29,7 +30,7 @@ exports.CreateRow = function(name, ip, level, maxtime, admin) {
 }
 
 exports.CreateFooter = function() {
-    return "      ╚═════════════╩═════════════════╩══════════╩═══════════╩══════════╝\r\n";
+    return "      ╚═════════════╩═════════════════╩══════════╩═══════════╩═══════════╝\r\n";
 }
 
 
@@ -79,7 +80,7 @@ exports.fix_maxtime = function(neww) {
 
 exports.fix_admin = function(neww) {
     let new_t = "  " + neww;
-    let new_length = gay.admin_length - neww.length - 2;
+    let new_length = gay.admin_length - neww.length - 1;
     let count = 0;
     for(count = 0; count < new_length; count++) {
         new_t += " ";
