@@ -26,7 +26,7 @@ server.listen(port, function() {
 server.on('connection', function(socket) {
     set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current"), socket);
     socket.write(config.Colors.Clear);
-    socket.write(banners.main() + config.Colors.Purple + "                            Traumatized Login Screen\r\n" + config.Colors.Black);
+    socket.write(banners.main() + config.Colors.Purple + "                            Traumatized Login Screen\r\n") + config.Colors.Black);
     console.log("A new connection has been established");
     var socket_port = socket.remotePort;
     var socket_ip = socket.remoteAddress.replace("::ffff:", "");
@@ -59,9 +59,10 @@ server.on('connection', function(socket) {
         */
         let user_name = crud.GetCurrentUsername(socket_ip);
         set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + user_name, socket);
+        
         if(crud.isSignedIn(socket_ip) == true) {
             if(cleanSTR.startsWith("help")) {
-                socket.write("Coming soon.....");
+                socket.write("Coming soon.....\r\n" + config.hostname(user_name));
             } else if(cleanSTR.startsWith("methods")) {
                 socket.write(config.Colors.Clear + banners.methods_list() + config.hostname(user_name));
             } else if(cleanSTR.startsWith("geo")) {
@@ -71,7 +72,7 @@ server.on('connection', function(socket) {
                 let ip = config.CurrentCMD.arg[1];
                 socket.write(await func.pScan(ip));
             } else if(cleanSTR.startsWith("stats")) {
-                
+                socket.write(func.show_stats(user_name) + config.hostname(user_name));
             } else if(cleanSTR.startsWith("clear")) {
                 socket.write(config.Colors.Clear + banners.main() + config.hostname(user_name))
             } else if(cleanSTR.startsWith("stress")) {
