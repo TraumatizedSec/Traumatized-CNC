@@ -20,16 +20,16 @@ exports.show_stats = function(user_name) {
     let response = "";
     let user_stats = crud.user(user_name, "all");
     let stats = user_stats.split(",");
-    response += "[User]: " + stats[0] + "\n";
-    response += "[IP]: " + stats[1] + "\n";
-    response += "[Level] " + stats[3] + "\n";
-    response += "[Maxtime]: " + stats[4] + "\n";
+    response += "[User]: " + stats[0] + "\r\n";
+    response += "[IP]: " + stats[1] + "\r\n";
+    response += "[Level] " + stats[3] + "\r\n";
+    response += "[Maxtime]: " + stats[4] + "\r\n";
     switch(parseInt(stats[5])) {
         case 0:
-            response += "[Admin]: False"; 
+            response += "[Admin]: False\r\n"; 
             break;
         case 1:
-            response += "[Admin]: True"; 
+            response += "[Admin]: True\r\n"; 
             break;
     }
     return response;
