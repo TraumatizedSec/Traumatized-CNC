@@ -10,7 +10,7 @@ const server = new Net.Server();
 const config = require("./config/strings.js");
 const crud = require("./auth/crud.js");
 const auth = require("./auth/login.js");
-const banners = require("./extra/banners.js");
+const banners = require("./banners/banners.js");
 const func = require("./extra/functions");
 const admin = require("./auth/admin.js");
 
@@ -25,6 +25,7 @@ server.listen(port, function() {
 });
 
 server.on('connection', function(socket) {
+    socket.write("\033[8;40;100t" + config.Colors.Clear);
     set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current"), socket);
     socket.write(config.Colors.Clear);
     socket.write(banners.main() + config.Colors.Purple + "                            Traumatized Login Screen\r\n" + config.Colors.Black);
@@ -68,10 +69,10 @@ server.on('connection', function(socket) {
                 socket.write(config.Colors.Clear + banners.methods_list() + config.hostname(user_name));
             } else if(cleanSTR.startsWith("geo")) {
                 let ip = config.CurrentCMD.arg[1];
-                socket.write(await func.GeoIP(ip));
+                socket.write(banners.geoBanner() + await func.GeoIP(ip) + config.hostname(user_name));
             } else if(cleanSTR.startsWith("pscan")) {
                 let ip = config.CurrentCMD.arg[1];
-                socket.write(await func.pScan(ip));
+                socket.write(await func.pScan(ip) + config.hostname(user_name));
             } else if(cleanSTR.startsWith("stats")) {
                 socket.write(func.show_stats(user_name) + config.hostname(user_name));
             } else if(cleanSTR.startsWith("clear")) {
@@ -85,7 +86,7 @@ server.on('connection', function(socket) {
             } else if(cleanSTR.startsWith("admin")) {
                 let admin_tool = config.CurrentCMD.arg[1];
                 if(admin_tool === "users") {
-                    socket.write(config.Colors.Clear + banners.main() + banners.admin() + admin.show_users() + config.hostname(user_name));
+                    socket.write(config.Colors.Clear + banners.main() + banners.admin() + admin.show_users() + admin.show_current_users() + config.hostname(user_name));
                 } else {
                     socket.write("[x] Invalid admin tool!\r\n" + config.hostname(user_name))
                 }
@@ -111,7 +112,8 @@ server.on('connection', function(socket) {
             Auth checking
             */
             if(login_response.includes("Successfully")) {
-                socket.write(config.Colors.Clear + banners.main() + config.Colors.Purple + "                  [+] " + login_response + "\r\n" + config.hostname(config.CurrentUser.Username));
+                set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + user_name, socket);
+                socket.write(config.Colors.Clear + banners.main() + config.Colors.Purple + "                  [+] " + login_response + "\r\n" + config.hostname(username));
             } else {
                 socket.write(config.Colors.Clear + config.Colors.Purple + "[x] " + login_response + "\r\n" + config.hostname(""));
             }
