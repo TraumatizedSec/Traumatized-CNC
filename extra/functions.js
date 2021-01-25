@@ -4,6 +4,7 @@ const func = require("./functions.js");
 const fetch = require("node-fetch");
 var term = require( 'terminal-kit' ).terminal;
 const { Socket } = require("dgram");
+const crud = require("../auth/crud.js");
 
 exports.GeoIP = async function(ip) {
     let results = await(await fetch("https://scrapy.tech/tools/?action=geoip&q="+ ip)).text();
@@ -13,6 +14,42 @@ exports.GeoIP = async function(ip) {
 exports.pScan = async function(ip) {
     let get_result = await(await fetch("https://scrapy.tech/tools/?action=portscan&q=" + ip)).text();
     return get_result;
+}
+
+exports.show_stats = function(user_name) {
+    let response = "";
+    let user_stats = crud.user(user_name, "all");
+    let stats = user_stats.split(",");
+    response += "[User]: " + stats[0] + "\n";
+    response += "[IP]: " + stats[1] + "\n";
+    response += "[Level] " + stats[3] + "\n";
+    response += "[Maxtime]: " + stats[4] + "\n";
+    switch(parseInt(stats[5])) {
+        case 0:
+            response += "[Admin]: False"; 
+            break;
+        case 1:
+            response += "[Admin]: True"; 
+            break;
+    }
+    return response;
+}
+
+exports.user_stats = function(usrOrip) {
+    let get_info = crud.user(user_name, "all").split(",");
+    let stats = "User: " + get_info[0] + "\n";
+    stats += "IP: " + get_info[1] + "\n";
+    stats += "Level: " + get_info[3] + "\n";
+    stats += "Maxtime: " + get_info[4];
+    switch(parseInt(get_info[5])) {
+        case 0:
+            stats += "Admin: False";
+            break;
+        case 1:
+            stats += "Admin: True";
+            break;
+    }
+
 }
 
 exports.stats = function(option) {
