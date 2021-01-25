@@ -1,4 +1,4 @@
 const fs = require("fs");
-const gay = require("./auth/login.js");
+const gay = require("./extra/functions.js");
 
-console.log(gay.login(process.argv[2], process.argv[3]));
+console.log(gay.show_stats(process.argv[2]));
