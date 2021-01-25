@@ -84,10 +84,10 @@ exports.remove = function(usrOrip) {
 exports.add = function(user, ip, pw, level, maxtime, admin) {
     let get_user = crud.user(user, "all");
     if(get_user === "Error, Invalid stat type!" || get_user === "No user found!") {
-        return "Username is taken, Choose another username";
+        return "[x] Username is taken, Choose another username";
     } else {
         fs.appendFileSync(db_path, "('" + user + "','" + ip + "','" + pw + "','" + level + "','" + maxtime + "','" + admin + "')\n")
-        return "User added";
+        return "[+] User added";
     }
 }
 
@@ -121,7 +121,7 @@ exports.update = function(usrOrip, new_ip, new_level, new_maxtime, new_admin) {
     })
 
     fs.writeFileSync(db_path, new_db);
-    return "User updated!";
+    return "[x] User: " + db_user + " successfully updated!";
 }
 
 exports.log_session = function(username, ip) {
