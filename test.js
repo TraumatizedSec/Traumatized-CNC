@@ -3,11 +3,17 @@ const func = require("./extra/functions.js");
 const crud = require("./auth/crud.js");
 const grid = require("./extra/data_grid");
 const admin = require("./auth/admin.js");
+const banners = require("./extra/banners.js");
 
 // console.log(gay.show_stats(process.argv[2])); //SHOW STATS
 // console.log(crud.update(process.argv[2], process.argv[3], process.argv[4], process.argv[5], process.argv[6])); // UPDATE USER
-
+console.log(banners.main());
+console.log(banners.admin())
 console.log(admin.show_users());
+
+
+
+
 // table = grid.CreateHeader();
 // let gay = fs.readFileSync("./db/users.db", "utf8");
 // let fix = gay.split("('").join("");
