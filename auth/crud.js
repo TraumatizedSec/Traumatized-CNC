@@ -113,12 +113,8 @@ exports.update = function(usrOrip, new_ip, new_level, new_maxtime, new_admin) {
             let fix_again = fix.replace("')", "");
             let data = fix_again.split("','");
             db_user = data[0];
-            db_ip = new_ip;
             db_pw = data[2];
-            db_level = new_level;
-            db_maxtime = new_maxtime;
-            db_admin = new_admin;
-            new_db = "('" + db_user + "','" + db_ip + "','" + db_pw + "','" + db_level + "','" + db_maxtime + "','" + db_admin + "')\n";
+            new_db = "('" + db_user + "','" + new_ip + "','" + db_pw + "','" + new_level + "','" + new_maxtime + "','" + new_admin + "')\n";
         } else if(u.length > 5) {
             new_db = u + "\n";
         }
