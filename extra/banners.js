@@ -50,6 +50,14 @@ exports.methods_list = function() {
     return list;
 }
 
+exports.admin = function() {
+    let admin = "";
+    admin += config.Colors.Purple + "      ╔══════════════════════════════════════════════════════════════════╗\r\n";
+    admin += "      ║                            " + config.Colors.Yellow + "Admin Users" + config.Colors.Purple + "                           ║\r\n";
+    admin += "      ╚══════════════════════════════════════════════════════════════════╝\r\n";
+    return admin;
+}
+
 exports.help = function() {
 
 }
