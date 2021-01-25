@@ -26,7 +26,7 @@ server.listen(port, function() {
 server.on('connection', function(socket) {
     set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current"), socket);
     socket.write(config.Colors.Clear);
-    socket.write(banners.main() + config.Colors.Purple + "                            Traumatized Login Screen\r\n") + config.Colors.Black);
+    socket.write(banners.main() + config.Colors.Purple + "                            Traumatized Login Screen\r\n" + config.Colors.Black);
     console.log("A new connection has been established");
     var socket_port = socket.remotePort;
     var socket_ip = socket.remoteAddress.replace("::ffff:", "");
