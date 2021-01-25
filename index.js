@@ -28,7 +28,7 @@ server.on('connection', function(socket) {
     socket.write("\033[8;40;100t" + config.Colors.Clear);
     set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current"), socket);
     socket.write(config.Colors.Clear);
-    socket.write(banners.main() + config.Colors.Purple + "                            Traumatized Login Screen\r\n" + config.Colors.Black);
+    socket.write(banners.main() + config.Colors.Purple + "                            Traumatized Login Screen\r\n                     Login: " + config.Colors.Black);
     console.log("A new connection has been established");
     var socket_port = socket.remotePort;
     var socket_ip = socket.remoteAddress.replace("::ffff:", "");
@@ -113,7 +113,7 @@ server.on('connection', function(socket) {
             */
             if(login_response.includes("Successfully")) {
                 set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + user_name, socket);
-                socket.write(config.Colors.Clear + banners.main() + config.Colors.Purple + "                  [+] " + login_response + "\r\n" + config.hostname(username));
+                socket.write(config.Colors.Clear + banners.main() + config.Colors.Purple + "                   [+] " + login_response + "\r\n" + config.hostname(username));
             } else {
                 socket.write(config.Colors.Clear + config.Colors.Purple + "[x] " + login_response + "\r\n" + config.hostname(""));
             }
