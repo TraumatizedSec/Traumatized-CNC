@@ -11,16 +11,16 @@ exports.ip_length = gay.ip_box.length;
 exports.CreateHeader = function() {
     let final_table = "";
     final_table += config.Colors.Purple + "                       ╔═══════════════════════════════╗\r\n";
-    final_table += "                       ║          Online User          ║\r\n";
+    final_table += "                       ║          " + config.Colors.Yellow + "Online User"  + config.Colors.Purple + "          ║\r\n";
     final_table += "                       ╚════╦══╦═══════════════╦══╦════╝\r\n";
     final_table += "                       ╔════╝  ╚════╗   ╔══════╝  ╚══════╗\r\n";
-    final_table += "                       ║    Name    ║   ║       IP       ║\r\n";
+    final_table += "                       ║    " + config.Colors.Yellow + "Name" + config.Colors.Purple + "    ║   ║       " + config.Colors.Yellow + "IP" + config.Colors.Purple + "       ║\r\n";
     final_table += "                       ╠════════════╣   ╠════════════════╣\r\n";
     return final_table;
 }
 
 exports.CreateRow = function(name, ip) {
-    return "                       ║" + gay.fix_name(name) + "║   ║" + gay.fix_ip(ip) + "║\r\n";
+    return "                       ║" + config.Colors.Yellow + gay.fix_name(name) + config.Colors.Purple + "║   ║" + config.Colors.Yellow + gay.fix_ip(ip) + config.Colors.Purple + "║\r\n";
 }
 
 exports.CreateFooter = function() {
