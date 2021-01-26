@@ -7,12 +7,14 @@ const banners = require("./banners/banners.js");
 
 // console.log(gay.show_stats(process.argv[2])); //SHOW STATS
 // console.log(crud.update(process.argv[2], process.argv[3], process.argv[4], process.argv[5], process.argv[6])); // UPDATE USER
-console.log(banners.main());
-console.log(banners.admin())
-console.log(banners.helpR())
+// console.log(banners.main());
+// console.log(banners.admin())
+// console.log(banners.helpR())
+
+var ip = process.argv[2];
+var skid = func.pScan(ip).replace("22" ," 34444");
 
 
-var func.pScan(ip);
 // console.log(admin.show_users());
 // console.log(admin.show_current_users()) //SHOW ALL USERS (ADMIN)
 
