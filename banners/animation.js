@@ -5,26 +5,26 @@ const config = require("../config/strings.js");
 exports.name_box = "    Name    ";
 exports.name_length = gay.name_box.length;
 
-exports.ip_box = "       IP       ";
+exports.ip_box = "       IP        ";
 exports.ip_length = gay.ip_box.length;
-
+//what is it
 exports.CreateHeader = function() {
     let final_table = "";
     final_table += config.Colors.Purple + "                       ╔═══════════════════════════════╗\r\n";
     final_table += "                       ║          " + config.Colors.Yellow + "Online User"  + config.Colors.Purple + "          ║\r\n";
-    final_table += "                       ╚════╦══╦═══════════════╦══╦════╝\r\n";
-    final_table += "                       ╔════╝  ╚════╗   ╔══════╝  ╚══════╗\r\n";
-    final_table += "                       ║    " + config.Colors.Yellow + "Name" + config.Colors.Purple + "    ║   ║       " + config.Colors.Yellow + "IP" + config.Colors.Purple + "       ║\r\n";
-    final_table += "                       ╠════════════╣   ╠════════════════╣\r\n";
+    final_table += "                       ╚════╦══╦══════════════╦══╦═════╝\r\n";
+    final_table += "                       ╔════╝  ╚════╗  ╔══════╝  ╚═══════╗\r\n";
+    final_table += "                       ║    " + config.Colors.Yellow + "Name" + config.Colors.Purple + "    ║  ║       " + config.Colors.Yellow + "IP" + config.Colors.Purple + "        ║\r\n";
+    final_table += "                       ╠════════════╣  ╠═════════════════╣\r\n";
     return final_table;
 }
 
 exports.CreateRow = function(name, ip) {
-    return "                       ║" + config.Colors.Yellow + gay.fix_name(name) + config.Colors.Purple + "║   ║" + config.Colors.Yellow + gay.fix_ip(ip) + config.Colors.Purple + "║\r\n";
+    return "                       ║" + config.Colors.Yellow + gay.fix_name(name) + config.Colors.Purple + "║  ║" + config.Colors.Yellow + gay.fix_ip(ip) + config.Colors.Purple + "║\r\n";
 }
 
 exports.CreateFooter = function() {
-    return "                       ╚════════════╝   ╚════════════════╝\r\n";
+    return "                       ╚════════════╝  ╚═════════════════╝\r\n";
 }
 
 
