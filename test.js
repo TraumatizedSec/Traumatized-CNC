@@ -9,7 +9,8 @@ const banners = require("./banners/banners.js");
 // console.log(crud.update(process.argv[2], process.argv[3], process.argv[4], process.argv[5], process.argv[6])); // UPDATE USER
 console.log(banners.main());
 console.log(banners.admin())
-console.log(admin.show_users());
+console.log(banners.helpR())
+// console.log(admin.show_users());
 // console.log(admin.show_current_users()) //SHOW ALL USERS (ADMIN)
 
 
