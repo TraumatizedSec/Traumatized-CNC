@@ -30,6 +30,33 @@ exports.geoBanner = function() {
     return gbnnr;
 }
 
+exports.helpR = function() {
+    let helpbnnr = "";
+    helpbnnr += config.Colors.Purple + "  ╔══════════════════════════════════════════════════════════════════════════╗\r\n";
+    helpbnnr += "  ║                               " + config.Colors.Yellow + "HELP" + config.Colors.Purple + "                                       ║\r\n";
+    helpbnnr += "  ╠══════════════╦═════════════════════╦═════════════════════════════════════╣\r\n";
+    helpbnnr += "  ║   " + config.Colors.Yellow + "Command" + config.Colors.Purple + "    ║  " + config.Colors.Yellow + "Description" + config.Colors.Purple + "        ║  " + config.Colors.Yellow + "Command Usage" + config.Colors.Purple + "                      ║\r\n";
+    helpbnnr += "  ╠══════════════╬═════════════════════╬═════════════════════════════════════╣\r\n";
+    helpbnnr += "  ║ " + config.Colors.Yellow + "Help" + config.Colors.Purple + "         ║ " + config.Colors.Yellow + "Command List" + config.Colors.Purple + "        ║  " + config.Colors.Yellow + "help" + config.Colors.Purple + "                               ║\r\n";
+    helpbnnr += "  ║ " + config.Colors.Yellow + "Info" + config.Colors.Purple + "         ║ " + config.Colors.Yellow + "CNC & Acc Info" + config.Colors.Purple + "      ║  " + config.Colors.Yellow + "info" + config.Colors.Purple + "                               ║\r\n";
+    helpbnnr += "  ║ " + config.Colors.Yellow + "Geo Locator" + config.Colors.Purple + "  ║ " + config.Colors.Yellow + "Geo Locate an IP" + config.Colors.Purple + "    ║  " + config.Colors.Yellow + "geo <ip>" + config.Colors.Purple + "                           ║\r\n";
+    helpbnnr += "  ║ " + config.Colors.Yellow + "Port Scan" + config.Colors.Purple + "    ║ " + config.Colors.Yellow + "Scan for open ports" + config.Colors.Purple + " ║  " + config.Colors.Yellow + "scan <ip>" + config.Colors.Purple + "                          ║\r\n";
+    helpbnnr += "  ║ " + config.Colors.Yellow + "Stresser" + config.Colors.Purple + "     ║ " + config.Colors.Yellow + "Attack Hub" + config.Colors.Purple + "          ║  " + config.Colors.Yellow + "stress <ip> <port> <time> <method>" + config.Colors.Purple + " ║\r\n";
+    helpbnnr += "  ║ " + config.Colors.Yellow + "Admin" + config.Colors.Purple + "        ║ " + config.Colors.Yellow + "Admin Commands" + config.Colors.Purple + "      ║  " + config.Colors.Yellow + "admin" + config.Colors.Purple + "                              ║\r\n";
+    helpbnnr += "  ╚══════════════════════════════════════════════════════════════════════════╝\r\n";
+    return helpbnnr;
+}
+
+exports.pScanBanner = function() {
+    let psBanner = "";
+    psBanner += config.Colors.Purple + "                       ╔═══════════════════════════════╗";
+    psBanner += "                       ║     " + config.Colors.Yellow + "Port Scanner Resulsts" + config.Colors.Purple + "     ║";
+    psBanner += "                       ╚═══════════════════════════════╝";
+    psBanner += "";
+    psBanner += "";
+    psBanner += "";
+}
+
 exports.methods_list = function() {
     let list = "";
     list += config.Colors.Purple + "                    ╔════════════════════════════════════════╗\r\n";
