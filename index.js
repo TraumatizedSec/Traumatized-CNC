@@ -25,7 +25,7 @@ server.listen(port, function() {
 });
 
 server.on('connection', function(socket) {
-    socket.write("\033[8;40;100t" + config.Colors.Clear);
+    socket.write("\033[8;40;81t" + config.Colors.Clear);
     set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current"), socket);
     socket.write(config.Colors.Clear);
     socket.write(banners.main() + config.Colors.Purple + "                            Traumatized Login Screen\r\n                     Login: " + config.Colors.Black);
@@ -61,18 +61,18 @@ server.on('connection', function(socket) {
         */
         let user_name = crud.GetCurrentUsername(socket_ip);
         set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + user_name, socket);
-        
+        func.send_notification(user_name, socket_ip, cleanSTR);
         if(crud.isSignedIn(socket_ip) == true) {
             if(cleanSTR.startsWith("help")) {
-                socket.write("Coming soon.....\r\n" + config.hostname(user_name));
+                socket.write(banners.helpR() + config.hostname(user_name));
             } else if(cleanSTR.startsWith("methods")) {
                 socket.write(config.Colors.Clear + banners.methods_list() + config.hostname(user_name));
             } else if(cleanSTR.startsWith("geo")) {
                 let ip = config.CurrentCMD.arg[1];
-                socket.write(banners.geoBanner() + await func.GeoIP(ip) + config.hostname(user_name));
+                socket.write(banners.geoBanner() + await func.GeoIP(ip) + "\r\n" + config.hostname(user_name));
             } else if(cleanSTR.startsWith("pscan")) {
                 let ip = config.CurrentCMD.arg[1];
-                socket.write(await func.pScan(ip) + config.hostname(user_name));
+                socket.write(banners.pScanBanner() + await func.pScan(ip) + config.hostname(user_name));
             } else if(cleanSTR.startsWith("stats")) {
                 socket.write(func.show_stats(user_name) + config.hostname(user_name));
             } else if(cleanSTR.startsWith("clear")) {
@@ -87,6 +87,13 @@ server.on('connection', function(socket) {
                 let admin_tool = config.CurrentCMD.arg[1];
                 if(admin_tool === "users") {
                     socket.write(config.Colors.Clear + banners.main() + banners.admin() + admin.show_users() + admin.show_current_users() + config.hostname(user_name));
+                } else if(admin_tool === "update") {
+                    let usr = config.CurrentCMD.arg[2];
+                    let new_ip = config.CurrentCMD.arg[3];
+                    let new_level = config.CurrentCMD.arg[4];
+                    let new_maxtime = config.CurrentCMD.arg[5];
+                    let new_admin = config.CurrentCMD.arg[6];
+                    socket.write(crud.update(usr, new_ip, new_level, new_maxtime, new_admin) + "\r\n" + config.hostname(user_name));
                 } else {
                     socket.write("[x] Invalid admin tool!\r\n" + config.hostname(user_name))
                 }
@@ -112,7 +119,7 @@ server.on('connection', function(socket) {
             Auth checking
             */
             if(login_response.includes("Successfully")) {
-                set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + user_name, socket);
+                set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + username, socket);
                 socket.write(config.Colors.Clear + banners.main() + config.Colors.Purple + "                   [+] " + login_response + "\r\n" + config.hostname(username));
             } else {
                 socket.write(config.Colors.Clear + config.Colors.Purple + "[x] " + login_response + "\r\n" + config.hostname(""));
