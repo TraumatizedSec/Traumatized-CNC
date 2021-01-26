@@ -20,13 +20,13 @@ exports.admin_length = gay.level_box.length;
 exports.CreateHeader = function() {
     let final_table = "";
     final_table += config.Colors.Purple + "      ╔═════════════╦═════════════════╦══════════╦═══════════╦══════════╗\r\n";
-    final_table += "      ║  Name       ║  IP             ║  Level   ║  Maxtime  ║  Admin   ║\r\n";
+    final_table += "      ║  " + config.Colors.Yellow + "Name" + config.Colors.Purple + "       ║  " + config.Colors.Yellow + "IP" + config.Colors.Purple + "             ║  " + config.Colors.Yellow + "Level" + config.Colors.Purple + "   ║  " + config.Colors.Yellow + "Maxtime" + config.Colors.Purple + "  ║  " + config.Colors.Yellow + "Admin" + config.Colors.Purple + "   ║\r\n";
     final_table += "      ╠═════════════╬═════════════════╬══════════╬═══════════╬══════════╣\r\n";
     return final_table;
 }
 
 exports.CreateRow = function(name, ip, level, maxtime, admin) {
-    return "      ║" + gay.fix_name(name) + "║" + gay.fix_ip(ip) + "║" + gay.fix_level(level) + "║" + gay.fix_maxtime(maxtime) + "║" + gay.fix_admin(admin) + "║\r\n";
+    return "      ║" + config.Colors.Yellow + gay.fix_name(name) + config.Colors.Purple + "║" + config.Colors.Yellow + gay.fix_ip(ip) + config.Colors.Purple + "║" + config.Colors.Yellow + gay.fix_level(level) + config.Colors.Purple + "║" + config.Colors.Yellow + gay.fix_maxtime(maxtime) + config.Colors.Purple + "║" + config.Colors.Yellow + gay.fix_admin(admin) + config.Colors.Purple + "║\r\n";
 }
 
 exports.CreateFooter = function() {
