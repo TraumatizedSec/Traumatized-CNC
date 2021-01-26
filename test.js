@@ -10,6 +10,9 @@ const banners = require("./banners/banners.js");
 console.log(banners.main());
 console.log(banners.admin())
 console.log(banners.helpR())
+
+
+var func.pScan(ip);
 // console.log(admin.show_users());
 // console.log(admin.show_current_users()) //SHOW ALL USERS (ADMIN)
 
