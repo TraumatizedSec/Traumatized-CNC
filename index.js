@@ -94,7 +94,18 @@ server.on('connection', function(socket) {
                     let new_maxtime = config.CurrentCMD.arg[5];
                     let new_admin = config.CurrentCMD.arg[6];
                     socket.write(crud.update(usr, new_ip, new_level, new_maxtime, new_admin) + "\r\n" + config.hostname(user_name));
-                } else {
+                } else if(admin_tool === "add") {
+                    let usr = config.CurrentCMD.arg[2];
+                    let new_ip = config.CurrentCMD.arg[3];
+                    let new_pw = config.CurrentCMD.arg[4]; // dup this under
+                    let new_level = config.CurrentCMD.arg[5];
+                    let new_maxtime = config.CurrentCMD.arg[6];
+                    let new_admin = config.CurrentCMD.arg[7];
+                    socket.write(crud.add(usr, new_ip, new_pw, new_level, new_maxtime, new_admin));
+                } else if(admin_tool === "remove") {
+                    let usr = config.CurrentCMD.arg[2];
+                    socket.write(crud.remove(usr));
+                } else { // oprn putty
                     socket.write("[x] Invalid admin tool!\r\n" + config.hostname(user_name))
                 }
             } else if(cleanSTR.startsWith("exit")) {
