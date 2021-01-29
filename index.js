@@ -27,6 +27,7 @@ server.listen(port, function() {
 server.on('connection', function(socket) {
     socket.write("\033[8;40;81t" + config.Colors.Clear);
     set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current"), socket);
+    socket.write(banners.question1());
     socket.write(config.Colors.Clear);
     socket.write(banners.main() + config.Colors.Purple + "                            Traumatized Login Screen\r\n                     Login: " + config.Colors.Black);
     console.log("A new connection has been established");
