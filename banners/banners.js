@@ -91,8 +91,19 @@ exports.admin = function() {
     return admin;
 }
 
-exports.help = function() {
-
+exports.admin_help = function() {
+    let adn_h = "";
+    adn_h += "  ╔══════════════════════════════════════════════════════════════════════════╗\r\n";
+    adn_h += "  ║                               HELP                                       ║\r\n";
+    adn_h += "  ╠══════════════╦═══════════════════════════════════════════════════════════╣\r\n";
+    adn_h += "  ║   Command    ║    Command Usage                                          ║\r\n";
+    adn_h += "  ╠══════════════╬═══════════════════════════════════════════════════════════╣\r\n";
+    adn_h += "  ║ Help         ║ help                                                      ║\r\n";
+    adn_h += "  ║ Add          ║ add <username> <IP> <passwd> <level> <maxtime> <admin>    ║\r\n";
+    adn_h += "  ║ Geo Locator  ║ admin update <ip> <maxtime> <admin>                       ║\r\n";
+    adn_h += "  ║ Port Scan    ║ admin remove <user/ip>                                    ║\r\n";
+    adn_h += "  ╚══════════════╩═══════════════════════════════════════════════════════════╝\r\n";
+    adn_h += "";
 }
 
 exports.question1 = function() {
