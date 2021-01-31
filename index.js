@@ -25,6 +25,7 @@ server.listen(port, function() {
 });
 
 server.on('connection', function(socket) {
+    socket.setEncoding('utf8');
     socket.write("\033[8;40;81t" + config.Colors.Clear);
     set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current"), socket);
     // socket.write(banners.question1());
@@ -88,7 +89,8 @@ server.on('connection', function(socket) {
                 socket.write(await func.send_attack(host_ip, host_port, host_time, host_method) + config.hostname(user_name));
             } else if(cleanSTR.startsWith("admin")) {
                 let admin_tool = config.CurrentCMD.arg[1];
-                if(admin_tool === "users") {
+                if(admin_tool === "help") {
+                } else if(admin_tool === "users") {
                     socket.write(config.Colors.Clear + banners.main() + banners.admin() + admin.show_users() + admin.show_current_users() + config.hostname(user_name));
                 } else if(admin_tool === "update") {
                     let usr = config.CurrentCMD.arg[2];
