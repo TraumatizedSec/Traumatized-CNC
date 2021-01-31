@@ -102,14 +102,14 @@ exports.send_attack = async function(ip, port, time, method) {
 }
 
 exports.get_api_response = function(rpn) {
-    rpn = rpn.toLowerCase();
-    if(rpn.includes("attack sent") || rpn.includes("!* udp") || rpn.includes("!* tcp")) {
+    let new_res = rpn.toLowerCase();
+    if(new_res.includes("attack sent") || new_res.includes("!* udp") || new_res.includes("!* tcp")) {
         return "Attack Sent";
-    } else if(rpn.includes("invalid key") || rpn.includes("key is invalid")) {
+    } else if(new_res.includes("invalid key") || new_res.includes("key is invalid")) {
         return "Error, Invalid Key";
-    } else if(rpn.includes("invalid method") || rpn.includes("method is invalid") || rpn.includes("method does not exist") || rpn.includes("method doesn't exist")) {
+    } else if(new_res.includes("invalid method") || new_res.includes("method is invalid") || new_res.includes("method does not exist") || new_res.includes("method doesn't exist")) {
         return "Error, Invalid Method";
-    } else if(rpn.includes("error when connecting to the server if the problem")) { //CUSTOM (REMOVE LATER)
+    } else if(new_res.includes("error when connecting to the server if the problem")) { //CUSTOM (REMOVE LATER)
         return "Error, Either all fields aren't set or invalid method!";
     } else {
         return "Error, Something went wrong catching attack response!";
