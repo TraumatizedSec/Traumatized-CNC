@@ -7,7 +7,7 @@ exports.hostname = function(name) {
     if(name === null || name === "undefined") {
         name = "CNC";
     }
-    return "\x1b[95m[\x1b[33mTraumatized\x1b[95m@\x1b[33m" + name + "\x1b[95m]\x1b[33m#~ \x1b[95m";
+    return "\x1b[95m[\x1b[96mOxzy\x1b[95m@\x1b[96m" + name + "\x1b[95m]\x1b[96m#~ \x1b[95m";
 }
 
 exports.Colors = {
