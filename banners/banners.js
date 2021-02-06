@@ -5,20 +5,20 @@ var link = require( 'terminal-kit' ).terminal ;
 
 exports.main = function() {
     let main = "";
-    main += config.Colors.Purple + "       _________                                               _________ \r\n";
-    main += "      :______.-':                                             :______.-':\r\n";
-    main += "      | ______  |       " + config.Colors.Yellow + "╔╦╗╦═╗╔═╗╦ ╦╔╦╗╔═╗╔╦╗╦╔═╗╔═╗╔╦╗" + config.Colors.Purple + "       | ______  |\r\n";
-    main += "      |:______B:|        " + config.Colors.Yellow + "║ ╠╦╝╠═╣║ ║║║║╠═╣ ║ ║╔═╝║╣  ║║" + config.Colors.Purple + "       |:______B:|\r\n";
-    main += "      |:______B:|        " + config.Colors.Yellow + "╩ ╩╚═╩ ╩╚═╝╩ ╩╩ ╩ ╩ ╩╚═╝╚═╝═╩╝" + config.Colors.Purple + "       |:______B:|\r\n";
-    main += "      |:______B:|         ╔═══════════════════════════╗       |:______B:|\r\n";
-    main += "      |         |         ║  " + config.Colors.Yellow + "Welcome To Traumatized" + config.Colors.Purple + "   ║       |         |\r\n";
-    main += "      |:_____:  |         ║ " + config.Colors.Yellow + "DDOS Protection Is A Joke" + config.Colors.Purple + " ║       |:_____:  |\r\n";
-    main += "      |    ==   |         ╚═══════════╦══╦════════════╝       |    ==   |\r\n";
-    main += "      |       O |          ╔══════════╝  ╚═══════════╗        |       O |\r\n";
-    main += "      |       o |          ║ " + config.Colors.Yellow + "Traumatized.xyz/Discord" + config.Colors.Purple + " ║        |       o |\r\n";
-    main += "      |       o |          ╠═════════════════════════╣        |       o |\r\n";
-    main += "      |'-.____o_|          ║  " + config.Colors.Yellow + "Traumatized.xyz/Insta" + config.Colors.Purple + "  ║        |'-.____o_|\r\n";
-    main += "      :_________:          ╚═════════════════════════╝        :_________:\r\n" + config.Colors.Reset;
+    main += config.Colors.Purple + "╔═════════════════════════════════════╗\r\n";
+    main += "║        _.-^^---....,,--             ║\r\n";
+    main += "║     _--                  --_        ║\r\n".
+    main += "║    <      ╔═╗═╗ ╦╔═╗╦ ╦     >)      ║\r\n".
+    main += "║    |      ║ ║╔╩╦╝╔═╝╚╦╝      |      ║\r\n".
+    main += "║     \\._   ╚═╝╩ ╚═╚═╝ ╩     _./      ║\r\n".
+    main += "║        ```--. . , ; .--'''          ║\r\n".
+    main += "║               | |   |               ║\r\n".
+    main += "║            .-=||  | |=-.            ║\r\n".
+    main += "║            `-=#$%&%$#=-'            ║\r\n".
+    main += "║               | ;  :|               ║\r\n".
+    main += "║      _____.,-#%&$@%#&#~,._____      ║\r\n".
+    main += "║                                     ║\r\n".
+    main += "╚═════════════════════════════════════╝\r\n";
     return main;
 }
 
