@@ -85,9 +85,9 @@ exports.add = function(user, ip, pw, level, maxtime, admin) {
     let get_user = crud.user(user, "all");
     if(get_user === "Error, Invalid stat type!" || get_user === "No user found!") {
         fs.appendFileSync(db_path, "('" + user + "','" + ip + "','" + pw + "','" + level + "','" + maxtime + "','" + admin + "')\n")
-        return "[+] User added";
+        return "[+] User added\r\n";
     } else {
-        return "[x] Username is taken, Choose another username";
+        return "[x] Username is taken, Choose another username\r\n";
     }
 } //open again
 
