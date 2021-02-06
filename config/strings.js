@@ -121,5 +121,5 @@ exports.GetCurrentUser = function(ip) {
 
 
   
-exports.BOOTERAPI = "http://45.143.138.112/api.php?host=";
-exports.BOOTERAPI2 = "http://45.143.138.137/api.php?host=";
+exports.BOOTERAPI = "https://onyxapi.online/AllAPI.php?key=XGN-27/1/2021-28375493749-changex1x&host=";
+exports.BOOTERAPI2 = "https://envystress.me/api/api.php?key=3b7BO0vghpOxEWLQ&host=";
