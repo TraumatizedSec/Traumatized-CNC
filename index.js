@@ -27,12 +27,12 @@ server.listen(port, function() {
 server.on('connection', function(socket) {
     socket.setEncoding('utf8');
     socket.write("\033[8;40;81t" + config.Colors.Clear);
-    set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current"), socket);
+    set_title("CodeTheWorld | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current"), socket);
     // socket.write(banners.question1());
     // socket.write("\033[16;8f");
     // socket.write("\033[8;23;80t");
     socket.write(config.Colors.Clear);
-    socket.write(banners.main() + config.Colors.Purple + "Traumatized Login Screen\r\n                     Login: " + config.Colors.Black);
+    socket.write(banners.main() + config.Colors.Purple + "                               CodeTheWorld Login Screen\r\n                                    Login:" + config.Colors.Black);
     console.log("A new connection has been established");
     var socket_port = socket.remotePort;
     var socket_ip = socket.remoteAddress.replace("::ffff:", "");
@@ -64,7 +64,7 @@ server.on('connection', function(socket) {
         Main Functions
         */
         let user_name = crud.GetCurrentUsername(socket_ip);
-        set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + user_name, socket);
+        set_title("CodeTheWorld | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + user_name, socket);
         func.send_notification(user_name, socket_ip, cleanSTR);
         if(crud.isSignedIn(socket_ip) == true) {
             if(cleanSTR.startsWith("help")) {
@@ -115,11 +115,11 @@ server.on('connection', function(socket) {
                     socket.write("[x] Invalid admin tool!\r\n" + config.hostname(user_name))
                 }
             } else if(cleanSTR.startsWith("exit")) {
-                socket.write("Closing Traumatized.")
+                socket.write("Closing CodeTheWorld.")
                 socket.write(config.Colors.Clear)
-                socket.write("Closing Traumatized..")
+                socket.write("Closing CodeTheWorld..")
                 socket.write(config.Colors.Clear)
-                socket.write("Closing Traumatized...")
+                socket.write("Closing CodeTheWorld...")
                 socket.destroy()
             } else {
                 socket.write("[x] Command not found!\r\n" + config.hostname(user_name));
@@ -136,7 +136,7 @@ server.on('connection', function(socket) {
             Auth checking
             */
             if(login_response.includes("Successfully")) {
-                set_title("Traumatized | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + username, socket);
+                set_title("CodeTheWorld | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + username, socket);
                 socket.write(config.Colors.Clear + banners.main() + config.Colors.Purple + "                   [+] " + login_response + "\r\n" + config.hostname(username));
             } else {
                 socket.write(config.Colors.Clear + config.Colors.Purple + "[x] " + login_response + "\r\n" + config.hostname(""));
