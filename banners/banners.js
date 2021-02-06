@@ -5,21 +5,21 @@ var link = require( 'terminal-kit' ).terminal ;
 
 exports.main = function() {
     let main = "";
-    main += config.Colors.Purple + "                   ╔═════════════════════════════════════╗\r\n";
-    main += "                   ║        " + config.Colors.Cyan + "_.-^^---....,,--" + config.Colors.Purple + "             ║\r\n";
-    main += "                   ║     " + config.Colors.Cyan + "_--                  --_" + config.Colors.Purple + "        ║\r\n";
-    main += "                   ║    " + config.Colors.Cyan + "<      ╔═╗═╗ ╦╔═╗╦ ╦     >)" + config.Colors.Purple + "      ║\r\n";
-    main += "                   ║    " + config.Colors.Cyan + "|      ║ ║╔╩╦╝╔═╝╚╦╝      |" + config.Colors.Purple + "      ║\r\n";
-    main += "                   ║     " + config.Colors.Cyan + "\._   ╚═╝╩ ╚═╚═╝ ╩     _./" + config.Colors.Purple + "      ║\r\n";
-    main += "                   ║        " + config.Colors.Cyan + "```--. . , ; .--'''" + config.Colors.Purple + "          ║\r\n";
-    main += "                   ║               " + config.Colors.Cyan + "| |   |" + config.Colors.Purple + "               ║\r\n";
-    main += "                   ║            " + config.Colors.Cyan + ".-=||  | |=-." + config.Colors.Purple + "            ║\r\n";
-    main += "                   ║            " + config.Colors.Cyan + "`-=#$%&%$#=-'" + config.Colors.Purple + "            ║\r\n";
-    main += "        Oxzy       ║               " + config.Colors.Cyan + "| ;  :|" + config.Colors.Purple + "               ║       eZy\r\n";
-    main += "  ╔════════════════╣     " + config.Colors.Cyan + " _____.,-#%&$@%#&#~,._____" + config.Colors.Purple + "      ╠════════════════╗\r\n";
-    main += "  ║   Nasty#0003   ║       CodeTheWord.xyz/discord       ║ eZy [CTW]#9374 ║\r\n";
-    main += "  ║  @nastyviben   ╟═════════════════════════════════════╣   @Prerooted   ║\r\n";
-    main += "  ╚════════════════╝           .gg/qjQqPW7sKQ            ╚════════════════╝\r\n" + config.Colors.Reset;
+    main += config.Colors.Purple + "                     ╔═════════════════════════════════════╗\r\n";
+    main += "                     ║        " + config.Colors.Cyan + "_.-^^---....,,--" + config.Colors.Purple + "             ║\r\n";
+    main += "                     ║     " + config.Colors.Cyan + "_--                  --_" + config.Colors.Purple + "        ║\r\n";
+    main += "                     ║    " + config.Colors.Cyan + "<      ╔═╗═╗ ╦╔═╗╦ ╦     >)" + config.Colors.Purple + "      ║\r\n";
+    main += "                     ║    " + config.Colors.Cyan + "|      ║ ║╔╩╦╝╔═╝╚╦╝      |" + config.Colors.Purple + "      ║\r\n";
+    main += "                     ║     " + config.Colors.Cyan + "\\._   ╚═╝╩ ╚═╚═╝ ╩     _./" + config.Colors.Purple + "      ║\r\n";
+    main += "                     ║        " + config.Colors.Cyan + "```--. . , ; .--'''" + config.Colors.Purple + "          ║\r\n";
+    main += "                     ║               " + config.Colors.Cyan + "| |   |" + config.Colors.Purple + "               ║\r\n";
+    main += "                     ║            " + config.Colors.Cyan + ".-=||  | |=-." + config.Colors.Purple + "            ║\r\n";
+    main += "                     ║            " + config.Colors.Cyan + "`-=#$%&%$#=-'" + config.Colors.Purple + "            ║\r\n";
+    main += "          Oxzy       ║               " + config.Colors.Cyan + "| ;  :|" + config.Colors.Purple + "               ║       eZy\r\n";
+    main += "    ╔════════════════╣     " + config.Colors.Cyan + " _____.,-#%&$@%#&#~,._____" + config.Colors.Purple + "      ╠════════════════╗\r\n";
+    main += "    ║   Nasty#0003   ║       CodeTheWord.xyz/discord       ║ eZy [CTW]#9374 ║\r\n";
+    main += "    ║  @nastyviben   ╟═════════════════════════════════════╣   @Prerooted   ║\r\n";
+    main += "    ╚════════════════╝           .gg/qjQqPW7sKQ            ╚════════════════╝\r\n" + config.Colors.Reset;
     return main;
 }
 
