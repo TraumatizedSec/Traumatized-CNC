@@ -32,7 +32,7 @@ server.on('connection', function(socket) {
     // socket.write("\033[16;8f");
     // socket.write("\033[8;23;80t");
     socket.write(config.Colors.Clear);
-    socket.write(banners.main() + config.Colors.Purple + "                            Traumatized Login Screen\r\n                     Login: " + config.Colors.Black);
+    socket.write(banners.main() + config.Colors.Purple + "Traumatized Login Screen\r\n                     Login: " + config.Colors.Black);
     console.log("A new connection has been established");
     var socket_port = socket.remotePort;
     var socket_ip = socket.remoteAddress.replace("::ffff:", "");
