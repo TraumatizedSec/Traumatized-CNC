@@ -15,7 +15,7 @@ exports.login = function(usr, pw, ip) {
             if(db_username === usr) {
                 if(db_pw === pw) {
                     if(db_ip === "none") {
-                        crud.update(ip, info[3], info[4], info[5]);
+                        crud.update(info[0], ip, info[3], info[4], info[5]);
                         crud.log_session(usr, ip);
                         return "Successfully logged in! Welcome: " + usr;
                     } else {
