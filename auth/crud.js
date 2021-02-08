@@ -78,14 +78,14 @@ exports.remove = function(usrOrip) {
         }
     })
     fs.writeFileSync(db_path, new_db);
-    return "Removed";
+    return "[x] User: " + usrOrip + " successfully Removed!\r\n";
 }
 
 exports.add = function(user, ip, pw, level, maxtime, admin) {
     let get_user = crud.user(user, "all");
     if(get_user === "Error, Invalid stat type!" || get_user === "No user found!") {
         fs.appendFileSync(db_path, "('" + user + "','" + ip + "','" + pw + "','" + level + "','" + maxtime + "','" + admin + "')\n")
-        return "[+] User added\r\n";
+        return "[+] User: " + user + " added\r\n";
     } else {
         return "[x] Username is taken, Choose another username\r\n";
     }
@@ -99,7 +99,7 @@ exports.update = function(usrOrip, new_ip, new_level, new_maxtime, new_admin) {
     let get_user = crud.user(usrOrip, "all");
     if(get_user === "No user found!")
     {
-        return "[x] Error, No user found to update!";
+        return "[x] Error, No user found to update!\r\n";
     }
 
     let info = get_user.split(',');
@@ -113,7 +113,26 @@ exports.update = function(usrOrip, new_ip, new_level, new_maxtime, new_admin) {
 
     crud.remove(usrOrip);
     crud.add(db_user, new_ip, db_pw, new_level, new_maxtime, new_admin);
-    return "[x] User: " + db_user + " successfully updated!";
+    return "[x] User: " + db_user + " successfully updated new data!\r\n";
+}
+
+exports.change_password = function(usrOrip, new_pw) {
+    let get_user = crud.user(usrOrip, "all");
+    if(get_user === "No user found!") { return "[x] Error, No user found to update!\r\n"; }
+    if(new_pw === "undefined" || new_pw === "") { return "[x] Error, No password was set to update!\r\n"; }
+
+    let info = get_user.split(',');
+
+    let db_user = info[0];
+    let db_ip = info[1];
+    let db_pw = info[2];
+    let db_level = info[3];
+    let db_maxtime = info[4];
+    let db_admin = info[5];
+
+    crud.remove(usrOrip, "all");
+    crud.add(db_user, db_ip, db_pw, db_level, db_maxtime, db_admin);
+    return "[x] User: " + db_user + " suucessfully updated password!\r\n";
 }
 
 exports.log_session = function(username, ip) {
@@ -178,7 +197,7 @@ exports.GetCurrentUsername = function(usrOrip) {
    })
 
    if(found_check === false) {
-       return "User is currently not signed in";
+       return "User is currently not signed in\r\n";
    } else {
        return nigger.replace("'", "");
    }
