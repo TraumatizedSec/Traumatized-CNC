@@ -96,31 +96,23 @@ exports.update = function(usrOrip, new_ip, new_level, new_maxtime, new_admin) {
     Read database and grab user data
     */
 
-    let db = fs.readFileSync(db_path, "utf8");
-    let users = db.split("\n");
-    let new_db = "";
+    let get_user = crud.user(usrOrip, "all");
+    if(get_user === "No user found!")
+    {
+        return "[x] Error, No user found to update!";
+    }
 
-    let db_user = "";
-    let db_ip = "";
-    let db_pw = "";
-    let db_level = "";
-    let db_maxtime = "";
-    let db_admin = "";
+    let info = get_user.split(',');
 
-    users.forEach(u => {
-        if(u.includes(usrOrip)) {
-            let fix = u.replace("('", "");
-            let fix_again = fix.replace("')", "");
-            let data = fix_again.split("','");
-            db_user = data[0];
-            db_pw = data[2];
-            new_db = "('" + db_user + "','" + new_ip + "','" + db_pw + "','" + new_level + "','" + new_maxtime + "','" + new_admin + "')\n";
-        } else if(u.length > 5) {
-            new_db = u + "\n";
-        }
-    })
+    let db_user = info[0];
+    let db_ip = info[1];
+    let db_pw = info[2];
+    let db_level = info[3];
+    let db_maxtime = info[4];
+    let db_admin = info[5];
 
-    fs.writeFileSync(db_path, new_db);
+    crud.remove(usrOrip);
+    crud.add(db_user, new_ip, db_pw, new_level, new_maxtime, new_admin);
     return "[x] User: " + db_user + " successfully updated!";
 }
 
