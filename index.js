@@ -67,7 +67,7 @@ server.on('connection', function(socket) {
         set_title("Oxzy | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + user_name, socket);
         func.send_notification(user_name, socket_ip, cleanSTR);
         if(crud.isSignedIn(socket_ip) == true) {
-            if(cleanSTR.startsWith("help")) {
+            if(cleanSTR.startsWith("help") || cleanSTR.startsWith("?")) {
                 socket.write(banners.helpR() + config.hostname(user_name));
             } else if(cleanSTR.startsWith("methods")) {
                 socket.write(config.Colors.Clear + banners.methods_list() + config.hostname(user_name));
@@ -90,7 +90,7 @@ server.on('connection', function(socket) {
             } else if(cleanSTR.startsWith("admin")) {
                 let admin_tool = config.CurrentCMD.arg[1];
                 if(admin_tool === "help") {
-                    socket.write(config.Colors.Clear + banners.main() + banners.admin() + banners.helpR());
+                    socket.write(config.Colors.Clear + banners.main() + banners.admin() + banners.helpR() + "\r\n" + config.hostname(user_name));
                 } else if(admin_tool === "users") {
                     socket.write(config.Colors.Clear + banners.main() + banners.admin() + admin.show_users() + admin.show_current_users() + config.hostname(user_name));
                 } else if(admin_tool === "update") {
@@ -99,7 +99,7 @@ server.on('connection', function(socket) {
                     let new_level = config.CurrentCMD.arg[4];
                     let new_maxtime = config.CurrentCMD.arg[5];
                     let new_admin = config.CurrentCMD.arg[6];
-                    socket.write(crud.update(usr, new_ip, new_level, new_maxtime, new_admin) + "\r\n" + config.hostname(user_name));
+                    socket.write(crud.update(usr, new_ip, new_level, new_maxtime, new_admin) + config.hostname(user_name));
                 } else if(admin_tool === "add") {
                     let usr = config.CurrentCMD.arg[2];
                     let new_ip = config.CurrentCMD.arg[3];
@@ -107,7 +107,7 @@ server.on('connection', function(socket) {
                     let new_level = config.CurrentCMD.arg[5];
                     let new_maxtime = config.CurrentCMD.arg[6];
                     let new_admin = config.CurrentCMD.arg[7];
-                    socket.write(crud.add(usr, new_ip, new_pw, new_level, new_maxtime, new_admin));
+                    socket.write(crud.add(usr, new_ip, new_pw, new_level, new_maxtime, new_admin) + config.hostname(user_name));
                 } else if(admin_tool === "remove") {
                     let usr = config.CurrentCMD.arg[2];
                     socket.write(crud.remove(usr));
