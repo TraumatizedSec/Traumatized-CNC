@@ -5,21 +5,33 @@ var link = require( 'terminal-kit' ).terminal ;
 
 exports.main = function() {
     let main = "";
-    main += config.Colors.Purple + "                     ╔═════════════════════════════════════╗\r\n";
-    main += "                     ║        " + config.Colors.Cyan + "_.-^^---....,,--" + config.Colors.Purple + "             ║\r\n";
-    main += "                     ║     " + config.Colors.Cyan + "_--                  --_" + config.Colors.Purple + "        ║\r\n";
-    main += "                     ║    " + config.Colors.Cyan + "<      ╔═╗═╗ ╦╔═╗╦ ╦     >)" + config.Colors.Purple + "      ║\r\n";
-    main += "                     ║    " + config.Colors.Cyan + "|      ║ ║╔╩╦╝╔═╝╚╦╝      |" + config.Colors.Purple + "      ║\r\n";
-    main += "                     ║     " + config.Colors.Cyan + "\\._   ╚═╝╩ ╚═╚═╝ ╩     _./" + config.Colors.Purple + "      ║\r\n";
-    main += "                     ║        " + config.Colors.Cyan + "```--. . , ; .--'''" + config.Colors.Purple + "          ║\r\n";
-    main += "                     ║               " + config.Colors.Cyan + "| |   |" + config.Colors.Purple + "               ║\r\n";
-    main += "                     ║            " + config.Colors.Cyan + ".-=||  | |=-." + config.Colors.Purple + "            ║\r\n";
-    main += "                     ║            " + config.Colors.Cyan + "`-=#$%&%$#=-'" + config.Colors.Purple + "            ║\r\n";
-    main += "          Oxzy       ║               " + config.Colors.Cyan + "| ;  :|" + config.Colors.Purple + "               ║       eZy\r\n";
-    main += "    ╔════════════════╣     " + config.Colors.Cyan + " _____.,-#%&$@%#&#~,._____" + config.Colors.Purple + "      ╠════════════════╗\r\n";
-    main += "    ║   Nasty#0003   ║       CodeTheWord.xyz/discord       ║ eZy [CTW]#9374 ║\r\n";
-    main += "    ║  @nastyviben   ╟═════════════════════════════════════╣   @Prerooted   ║\r\n";
-    main += "    ╚════════════════╝           .gg/qjQqPW7sKQ            ╚════════════════╝\r\n" + config.Colors.Reset;
+    main += config.Colors.Purple + "                                  !\r\n";
+    main += "                                  ^ \r\n";
+    main += "                                 / \\ \r\n";
+    main += "         __                     /___\\               __\r\n";
+    main += "         \ \_____              |=   =|              \ \_____\r\n";
+    main += "      ###[==_____>             |     |           ###[==_____>\r\n";
+    main += "         /_/                   |     |              /_/     \r\n";
+    main += "                          ╔═╗═╗ ╦╔═╗╔╦╗╦╔═╗\r\n";
+    main += "  ╔═════════════════════╗ ║╣ ╔╩╦╝║ ║ ║ ║║   ╔═════════════════════╗\r\n";
+    main += "  ║        n4n0         ║ ╚═╝╩ ╚═╚═╝ ╩ ╩╚═╝ ║       Justin        ║\r\n";
+    main += "  ╠═════════════════════╣      |     |      ╠═════════════════════╣\r\n";
+    main += "  ║ Owner               ║      |     |      ║ Owner               ║\r\n";
+    main += "  ║ Head-Developer      ║      |     |      ║ API Provider        ║\r\n";
+    main += "  ║                     ║      |     |      ║                     ║\r\n";
+    main += "  ║ n4n0#2100           ║     /|##!##|\     ║ Justin Guvasto#0184 ║\r\n";
+    main += "  ║ @Preauthorize       ║    / |##!##| \    ║                     ║\r\n";
+    main += "  ╚═════════════════════╝   /  |##!##|  \   ╚═════════════════════╝\r\n";
+    main += "                           |  / ^ | ^ \  |\r\n";
+    main += "                           | /  ( | )  \ |\r\n";
+    main += "                           |/   ( | )   \|\r\n";
+    main += "                               ((   ))\r\n";
+    main += "                              ((  :  ))\r\n";
+    main += "                              ((  :  ))\r\n";
+    main += "                               ((   ))\r\n";
+    main += "                                (( ))\r\n";
+    main += "                                 ( )\r\n";
+    main += "                                  .\r\n";
     return main;
 }
 
