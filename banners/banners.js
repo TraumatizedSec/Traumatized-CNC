@@ -42,6 +42,7 @@ exports.helpR = function() {
     helpbnnr += "  ║ " + config.Colors.Cyan + "Info" + config.Colors.Purple + "         ║ " + config.Colors.Cyan + "CNC & Acc Info" + config.Colors.Purple + "      ║  " + config.Colors.Cyan + "info" + config.Colors.Purple + "                               ║\r\n";
     helpbnnr += "  ║ " + config.Colors.Cyan + "Geo Locator" + config.Colors.Purple + "  ║ " + config.Colors.Cyan + "Geo Locate an IP" + config.Colors.Purple + "    ║  " + config.Colors.Cyan + "geo <ip>" + config.Colors.Purple + "                           ║\r\n";
     helpbnnr += "  ║ " + config.Colors.Cyan + "Port Scan" + config.Colors.Purple + "    ║ " + config.Colors.Cyan + "Scan for open ports" + config.Colors.Purple + " ║  " + config.Colors.Cyan + "scan <ip>" + config.Colors.Purple + "                          ║\r\n";
+    helpbnnr += "  ║ " + config.Colors.Cyan + "Methods" + config.Colors.Purple + "      ║ " + config.Colors.Cyan + "List of methods" + config.Colors.Purple + "     ║  " + config.Colors.Cyan + "methods" + config.Colors.Purple + "                            ║\r\n";
     helpbnnr += "  ║ " + config.Colors.Cyan + "Stresser" + config.Colors.Purple + "     ║ " + config.Colors.Cyan + "Attack Hub" + config.Colors.Purple + "          ║  " + config.Colors.Cyan + "stress <ip> <port> <time> <method>" + config.Colors.Purple + " ║\r\n";
     helpbnnr += "  ║ " + config.Colors.Cyan + "Admin" + config.Colors.Purple + "        ║ " + config.Colors.Cyan + "Admin Commands" + config.Colors.Purple + "      ║  " + config.Colors.Cyan + "admin" + config.Colors.Purple + "                              ║\r\n";
     helpbnnr += "  ╚══════════════════════════════════════════════════════════════════════════╝\r\n";
@@ -110,11 +111,11 @@ exports.admin_help = function() {
     adn_h += "  ║   Command    ║    Command Usage                                          ║\r\n";
     adn_h += "  ╠══════════════╬═══════════════════════════════════════════════════════════╣\r\n";
     adn_h += "  ║ Help         ║ help                                                      ║\r\n";
-    adn_h += "  ║ Add          ║ add <username> <IP> <passwd> <level> <maxtime> <admin>    ║\r\n";
-    adn_h += "  ║ Geo Locator  ║ admin update <ip> <maxtime> <admin>                       ║\r\n";
-    adn_h += "  ║ Port Scan    ║ admin remove <user/ip>                                    ║\r\n";
+    adn_h += "  ║ Add          ║ admin add <user> <IP> <passwd> <level> <maxtime> <admin>  ║\r\n";
+    adn_h += "  ║ Update       ║ admin update <userOrip> <ip> <lvl> <time> <admin>         ║\r\n";
+    adn_h += "  ║ Remove       ║ admin remove <user/ip>                                    ║\r\n";
     adn_h += "  ╚══════════════╩═══════════════════════════════════════════════════════════╝\r\n";
-    adn_h += "";
+    return adn_h;
 }
 
 exports.question1 = function() {
