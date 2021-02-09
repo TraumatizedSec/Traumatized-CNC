@@ -90,7 +90,7 @@ server.on('connection', function(socket) {
             } else if(cleanSTR.startsWith("admin")) {
                 let admin_tool = config.CurrentCMD.arg[1];
                 if(admin_tool === "help") {
-                    socket.write(config.Colors.Clear + banners.main() + banners.admin() + banners.helpR() + "\r\n" + config.hostname(user_name));
+                    socket.write(config.Colors.Clear + banners.main() + banners.admin() + banners.admin_help() + "\r\n" + config.hostname(user_name));
                 } else if(admin_tool === "users") {
                     socket.write(config.Colors.Clear + banners.main() + banners.admin() + admin.show_users() + admin.show_current_users() + config.hostname(user_name));
                 } else if(admin_tool === "update") {
