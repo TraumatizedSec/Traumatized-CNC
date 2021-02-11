@@ -27,7 +27,7 @@ server.listen(port, function() {
 server.on('connection', function(socket) {
     socket.setEncoding('utf8');
     socket.write("\033[8;40;81t" + config.Colors.Clear);
-    set_title("Exotic | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current"), socket);
+    set_title("Exotic | [API]: 4 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current"), socket);
     // socket.write(banners.question1());
     // socket.write("\033[16;8f");
     // socket.write("\033[8;23;80t");
@@ -64,7 +64,7 @@ server.on('connection', function(socket) {
         Main Functions
         */
         let user_name = crud.GetCurrentUsername(socket_ip);
-        set_title("Exotic | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + user_name, socket);
+        set_title("ExoticNET | [API]: 4 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + user_name, socket);
         if(crud.isSignedIn(socket_ip) == true) {
             if(cleanSTR.startsWith("help") || cleanSTR.startsWith("?")) {
                 socket.write(config.Colors.Clear + banners.main() + banners.helpR() + config.hostname(user_name));
@@ -137,7 +137,7 @@ server.on('connection', function(socket) {
             Auth checking
             */
             if(login_response.includes("Successfully")) {
-                set_title("Exotic | [API]: 3 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + username, socket);
+                set_title("Exotic | [API]: 4 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current") + " | [Username]: " + username, socket);
                 socket.write(config.Colors.Clear + banners.main() + config.Colors.Red + "                   [+] " + login_response + "\r\n" + config.hostname(username));
             } else {
                 socket.write(config.Colors.Clear + config.Colors.Red + "[x] " + login_response + "\r\n" + config.hostname(""));
