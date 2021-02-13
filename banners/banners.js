@@ -23,14 +23,14 @@ exports.main = function() {
     main += "        ║ " + config.Colors.Yellow + "@Preauthorize" + config.Colors.Red + "       ║    / |##!##| \\    ║ " + config.Colors.Yellow + "@02_dbb" + config.Colors.Red + "             ║\r\n";
     main += "        ╚═════════════════════╝   /  |##!##|  \\   ╚═════════════════════╝\r\n";
     main += "                                 |  / ^ | ^ \\  |\r\n";
-    main += "                                 | /  ( | )  \\ |\r\n";
-    main += "                                 |/   ( | )   \\|\r\n";
-    main += "                                     ((   ))\r\n";
-    main += "                                    ((  :  ))\r\n";
-    main += "                                    ((  :  ))\r\n";
-    main += "                                     ((   ))\r\n";
-    main += "                                      (( ))\r\n";
-    main += "                                       ( )\r\n";
+    main += "        ╔═════════════════════╗  |  / ^ | ^ \  |  ╔═════════════════════╗\r\n";
+    main += "        ║       " + config.Colors.Yellow + "CRYSIIII" + config.Colors.Red + "      ║  | /  ( | )  \ |  ║        " + config.Colors.Yellow + "Flowz" + config.Colors.Red + "        ║\r\n";
+    main += "        ╠═════════════════════╣  |/   ( | )   \|  ╠═════════════════════╣\r\n";
+    main += "        ║ " + config.Colors.Yellow + "3rd Owner/APIs" + config.Colors.Red + "      ║      ((   ))      ║ " + config.Colors.Yellow + "Reseller" + config.Colors.Red + "            ║\r\n";
+    main += "        ║                     ║     ((  :  ))     ╚═════════════════════╝\r\n";
+    main += "        ║ " + config.Colors.Yellow + "CRYSIIII#1050" + config.Colors.Red + "       ║     ((  :  ))\r\n";
+    main += "        ║ " + config.Colors.Yellow + "@nxthing.is.here" + config.Colors.Red + "    ║      ((   ))\r\n";
+    main += "        ╚═════════════════════╝       (( ))\r\n";
     main += "                                        .\r\n";
     return main;
 }
