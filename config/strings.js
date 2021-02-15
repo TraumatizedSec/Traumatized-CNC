@@ -127,3 +127,4 @@ exports.BOOTERAPI = "https://onyxapi.online/AllAPI.php?key=Zerro-1m-34758347&hos
 exports.BOOTERAPI2 = "http://api.pia.uy/api/attacks?apikey=rest:rr5pb1zhs8&host=";
 exports.BOOTERAPI3 = "https://plutoniumstress.com/api/api.php?key=VQsMAfTWT1JrVPzd&host=";
 exports.BOOTERAPI4 = "https://scrapy.tech/d0s/?host=";
+exports.BOOTERAPI5 = "https://hiroshimaservices.cc/api/api.php?key=BC3wcc0F6ZUFCH2Q&host=";
