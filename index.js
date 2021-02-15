@@ -1,6 +1,5 @@
 const Net = require('net');
 var fs = require('fs');
-///const async = require('')
 const p = require("phin");
 const f = require("node-fetch");
 const { exec } = require('child_process');
@@ -143,8 +142,6 @@ server.on('connection', function(socket) {
                 socket.write(config.Colors.Clear + config.Colors.Red + "[x] " + login_response + "\r\n" + config.hostname(""));
             }
         } else {
-
-            //THIS MESSAGE ONLY APPEAR WHEN USER INFO IS WRONG
             socket.write(config.Colors.Clear + config.Colors.Red + "          Must login\r\nUsage: <username> <password>\r\n" + config.Colors.Black)
         }
     });
