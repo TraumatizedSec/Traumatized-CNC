@@ -3,6 +3,7 @@ var fs = require('fs');
 const p = require("phin");
 const f = require("node-fetch");
 const { exec } = require('child_process');
+const EventEmitter = require("events");
 const port = 455;
 const server = new Net.Server();
 
@@ -23,8 +24,10 @@ server.listen(port, function() {
     reset_sessions();
 });
 
-server.on('connection', function(socket) {
+server.on('connection', async function(socket) {
     socket.setEncoding('utf8');
+    let ggg = await getInput(socket, "Username: ");
+    console.log(ggg);
     socket.write("\033[8;40;81t" + config.Colors.Clear);
     set_title("Exotic | [API]: 4 | [Total Users]: " + func.stats("users") + " | [Total Online Users]: " + func.stats("current"), socket);
     // socket.write(banners.question1());
@@ -166,3 +169,19 @@ function set_title(string, socket)
 {
     socket.write("\033]0;" + string + "\007")
 }
+
+function getInput(socket, string) {
+    return new Promise(resolve => {
+        socket.write(string);
+
+        socket.on("data", c => {
+        c = c.toString();
+        
+        if(c.indexOf("\n") !== -1) {
+            socket.removeAllListeners("data");
+  
+          return resolve(c.trim());
+        }
+      });
+    });
+  }
