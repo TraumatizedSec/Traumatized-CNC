@@ -4,7 +4,6 @@ const p = require("phin");
 const f = require("node-fetch");
 const { exec } = require('child_process');
 const EventEmitter = require("events");
-const port = 456;
 const server = new Net.Server();
 
 const config = require("./config/strings.js");
@@ -13,6 +12,10 @@ const auth = require("./auth/login.js");
 const banners = require("./banners/banners.js");
 const func = require("./extra/functions");
 const admin = require("./auth/admin.js");
+
+let args = process.argv;
+
+if(args.length != 1) { console.log("[x] Error, Invalid argument\r\nUsage: " + process.argv[0] + " " + process.argv[1] + " <port>\r\n"); process.exit(0);}
 
 const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
