@@ -15,7 +15,7 @@ const admin = require("./auth/admin.js");
 
 let args = process.argv;
 
-if(args.length != 1) { console.log("[x] Error, Invalid argument\r\nUsage: " + process.argv[0] + " " + process.argv[1] + " <port>\r\n"); process.exit(0);}
+if(args.length != 1) { console.log("[x] Error, Invalid argument\r\nUsage: " + process.argv[0] + " " + process.argv[1] + " <port>\r\nExample: node index.js 535"); process.exit(0);}
 
 const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
